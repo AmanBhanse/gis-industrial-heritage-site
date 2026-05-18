@@ -36,7 +36,7 @@ export function createCategoryIcon(category) {
     </svg>
   `;
 
-  const iconUrl = `data:image/svg+xml;base64,${btoa(svg)}`;
+  const iconUrl = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
 
   return L.icon({
     iconUrl: iconUrl,
