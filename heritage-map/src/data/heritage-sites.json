@@ -1,0 +1,164 @@
+{
+  "sites": [
+    {
+      "id": 1,
+      "name": "Kaiserlautern Steelworks",
+      "category": "factory",
+      "yearBuilt": 1887,
+      "status": "converted",
+      "era": "1800s",
+      "lat": 49.4463,
+      "lng": 7.7575,
+      "description": "Historic steel manufacturing facility that served as the industrial heart of Kaiserslautern for over a century. Built in 1887, the steelworks employed thousands of workers and produced high-quality steel for European markets. Now partially converted into office spaces and cultural venues while maintaining its industrial heritage.",
+      "images": [
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400",
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
+      ],
+      "additionalInfo": "Guided tours available on weekends"
+    },
+    {
+      "id": 2,
+      "name": "Coal Mine No. 3",
+      "category": "mine",
+      "yearBuilt": 1903,
+      "status": "abandoned",
+      "era": "1900-1950",
+      "lat": 49.4378,
+      "lng": 7.7489,
+      "description": "Once one of the largest coal mines in the Palatinate region, Coal Mine No. 3 operated for nearly a century until closure in 1994. The mine reached depths of over 600 meters and employed up to 800 miners at its peak. Today, the surface structures remain as monuments to the mining heritage.",
+      "images": [
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
+        "https://images.unsplash.com/photo-1581092916892-8ff080ef069b?w=400"
+      ],
+      "additionalInfo": "Site closed to public for safety reasons"
+    },
+    {
+      "id": 3,
+      "name": "Kaiserslautern Railway Station",
+      "category": "railway",
+      "yearBuilt": 1879,
+      "status": "active",
+      "era": "1800s",
+      "lat": 49.4402,
+      "lng": 7.7547,
+      "description": "A magnificent example of 19th-century railway architecture, the station was built in 1879 as part of the Palatinate railway expansion. The neoclassical building features ornate facades and period details. Still functioning as a major regional transport hub, it serves thousands of passengers daily.",
+      "images": [
+        "https://images.unsplash.com/photo-1474487548417-552864b1330b?w=400",
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400"
+      ],
+      "additionalInfo": "Renovation completed in 2019"
+    },
+    {
+      "id": 4,
+      "name": "Pfaff Textile Warehouse",
+      "category": "warehouse",
+      "yearBuilt": 1912,
+      "status": "converted",
+      "era": "1900-1950",
+      "lat": 49.4510,
+      "lng": 7.7612,
+      "description": "A five-story textile warehouse built for the famous Pfaff sewing machine company. The red brick structure with Art Nouveau details is one of the most recognizable industrial buildings in the city. Converted into luxury apartments and creative studio spaces, it successfully blends historic preservation with modern living.",
+      "images": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+      ],
+      "additionalInfo": "Mixed-use development with 85 residential units"
+    },
+    {
+      "id": 5,
+      "name": "Eisenhammer Iron Foundry",
+      "category": "factory",
+      "yearBuilt": 1856,
+      "status": "active",
+      "era": "1800s",
+      "lat": 49.4298,
+      "lng": 7.7423,
+      "description": "One of the oldest continuously operating iron foundries in Germany. Founded in 1856, Eisenhammer continues traditional iron casting methods while maintaining modern production standards. The facility showcases the evolution of industrial technology over 160+ years of operation.",
+      "images": [
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400",
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
+      ],
+      "additionalInfo": "Operating as specialty metal foundry"
+    },
+    {
+      "id": 6,
+      "name": "Dynamite Factory Complex",
+      "category": "factory",
+      "yearBuilt": 1894,
+      "status": "abandoned",
+      "era": "1800s",
+      "lat": 49.4356,
+      "lng": 7.7501,
+      "description": "Built in 1894 for the production of dynamite and explosives, this complex represents an important chapter in industrial chemistry. The facility was operational for over 80 years before closure. Several preserved buildings showcase early-20th-century industrial architecture and manufacturing techniques.",
+      "images": [
+        "https://images.unsplash.com/photo-1581092916892-8ff080ef069b?w=400",
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
+      ],
+      "additionalInfo": "Restricted access - structural assessment ongoing"
+    },
+    {
+      "id": 7,
+      "name": "Weaving Mill District",
+      "category": "factory",
+      "yearBuilt": 1889,
+      "status": "converted",
+      "era": "1800s",
+      "lat": 49.4445,
+      "lng": 7.7556,
+      "description": "A entire district of interconnected weaving mills built between 1889-1920. This cluster of brick buildings once employed hundreds of workers in textile production. Today, the district has been transformed into a creative hub with galleries, studios, and cultural venues while preserving original architectural elements.",
+      "images": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+      ],
+      "additionalInfo": "Cultural district with regular art events"
+    },
+    {
+      "id": 8,
+      "name": "Gas Works Plant",
+      "category": "factory",
+      "yearBuilt": 1876,
+      "status": "museum",
+      "era": "1800s",
+      "lat": 49.4385,
+      "lng": 7.7534,
+      "description": "The historic gas works plant dates back to 1876 and provided gas for street lighting and home heating for nearly 120 years. The facility includes original retorts, holders, and processing equipment. Now operating as an industrial heritage museum with guided tours showcasing the evolution of urban energy infrastructure.",
+      "images": [
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
+      ],
+      "additionalInfo": "Museum open Saturdays and Sundays 10am-4pm"
+    },
+    {
+      "id": 9,
+      "name": "Leather Tannery Complex",
+      "category": "factory",
+      "yearBuilt": 1885,
+      "status": "converted",
+      "era": "1800s",
+      "lat": 49.4520,
+      "lng": 7.7600,
+      "description": "A sprawling leather tannery complex that operated from 1885 to 1998. The multi-building facility processed leather for shoe and furniture industries across Europe. Sensitively converted into residential lofts and a design school, the site maintains its industrial character through retained brick walls and soaring ceilings.",
+      "images": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+      ],
+      "additionalInfo": "Design school campus with 200+ students"
+    },
+    {
+      "id": 10,
+      "name": "Machinery Manufacturing Plant",
+      "category": "factory",
+      "yearBuilt": 1901,
+      "status": "active",
+      "era": "1900-1950",
+      "lat": 49.4312,
+      "lng": 7.7467,
+      "description": "Established in 1901 to manufacture precision machinery for textile and printing industries. The plant showcases the transition from steam-powered to electric production methods. Still operational today as a specialty machine manufacturer serving international markets with custom engineering solutions.",
+      "images": [
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
+      ],
+      "additionalInfo": "Company tours available for groups"
+    }
+  ]
+}
