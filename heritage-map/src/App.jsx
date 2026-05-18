@@ -3,6 +3,9 @@ import './App.css'
 import MapContainer from './components/MapContainer'
 import MarkerList from './components/MarkerList'
 import SiteDetails from './components/SiteDetails'
+import FilterSidebar from './components/FilterSidebar'
+import FilterFeedback from './components/FilterFeedback'
+import { useFilteredSites } from './hooks/useFilteredSites'
 import heritageData from './data/heritage-sites.json'
 
 /**
@@ -17,6 +20,9 @@ function App() {
     statuses: []
   })
 
+  // Get filtered sites based on current filters
+  const filteredSites = useFilteredSites(heritageData.sites, filters)
+
   // Handler for when a marker is clicked on the map
   const handleMarkerClick = (site) => {
     setSelectedSite(site)
@@ -27,9 +33,9 @@ function App() {
     setSelectedSite(site)
   }
 
-  // Handler to close site details
-  const handleCloseSiteDetails = () => {
-    setSelectedSite(null)
+  // Handler for when a filter changes
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters)
   }
 
   return (
@@ -41,22 +47,35 @@ function App() {
       
       <main className="app-main">
         <MapContainer 
-          sites={heritageData.sites} 
+          sites={filteredSites} 
           selectedSite={selectedSite}
           onMarkerClick={handleMarkerClick}
         />
-        {selectedSite ? (
-          <SiteDetails
-            site={selectedSite}
-            onClose={handleCloseSiteDetails}
+        <div className="sidebar">
+          <FilterSidebar
+            filters={filters}
+            onFilterChange={handleFilterChange}
           />
-        ) : (
-          <MarkerList
-            sites={heritageData.sites}
-            selectedSite={selectedSite}
-            onSelectSite={handleSelectSite}
-          />
-        )}
+          {!selectedSite && (
+            <FilterFeedback
+              sites={heritageData.sites}
+              filteredSites={filteredSites}
+              filters={filters}
+            />
+          )}
+          {selectedSite ? (
+            <SiteDetails
+              site={selectedSite}
+              onClose={handleCloseSiteDetails}
+            />
+          ) : (
+            <MarkerList
+              sites={filteredSites}
+              selectedSite={selectedSite}
+              onSelectSite={handleSelectSite}
+            />
+          )}
+        </div>
       </main>
     </div>
   )
