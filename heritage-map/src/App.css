@@ -33,6 +33,18 @@
   overflow: hidden;
 }
 
+/* MapContainer takes up remaining space */
+.app-main > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+/* MarkerList sidebar */
+.app-main > div:last-child {
+  width: 350px;
+  flex-shrink: 0;
+}
+
 .placeholder {
   flex: 1;
   display: flex;
@@ -41,4 +53,21 @@
   color: #999;
   font-size: 18px;
   background-color: white;
+}
+
+/* Responsive: Stack on mobile */
+@media (max-width: 768px) {
+  .app-main {
+    flex-direction: column;
+  }
+
+  .app-main > div:first-child {
+    flex: 1;
+    width: 100%;
+  }
+
+  .app-main > div:last-child {
+    width: 100%;
+    flex-shrink: 1;
+  }
 }

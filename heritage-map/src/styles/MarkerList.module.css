@@ -1,0 +1,223 @@
+.markerList {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: white;
+  border-left: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.header h2 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.count {
+  background-color: var(--primary);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 12px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+.searchContainer {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  transition: border-color var(--transition-fast);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+.clearButton {
+  position: absolute;
+  right: calc(var(--spacing-md) + var(--spacing-xs));
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: var(--font-size-md);
+  color: var(--gray);
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.clearButton:hover {
+  color: var(--dark);
+}
+
+.list {
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.item {
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--transition-fast);
+}
+
+.item:hover {
+  background-color: var(--light);
+}
+
+.item.active {
+  background-color: rgba(44, 62, 80, 0.08);
+}
+
+.button {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  text-align: left;
+  transition: background-color var(--transition-fast);
+}
+
+.button:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.categoryDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.itemContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemName {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--dark);
+  word-break: break-word;
+}
+
+.itemMeta {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-sm);
+  color: var(--gray);
+  text-transform: capitalize;
+}
+
+.itemStatus {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--gray);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.empty {
+  list-style: none;
+  padding: var(--spacing-lg) var(--spacing-md);
+  text-align: center;
+  color: var(--gray);
+  font-size: var(--font-size-sm);
+}
+
+.empty p {
+  margin: 0;
+}
+
+.footer {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--border);
+  background-color: var(--light);
+}
+
+.stats {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--gray);
+  text-align: center;
+}
+
+/* Scrollbar styling */
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+  border-radius: 3px;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dark);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .markerList {
+    max-height: 50vh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .header {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .header h2 {
+    font-size: var(--font-size-md);
+  }
+
+  .searchContainer {
+    padding: var(--spacing-sm);
+  }
+
+  .button {
+    padding: var(--spacing-sm);
+  }
+}
