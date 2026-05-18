@@ -1,17 +1,26 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
+import { useImageGallery } from '../hooks/useImageGallery'
 import styles from '../styles/ImageGallery.module.css'
 
 /**
  * ImageGallery Component
  * Displays a carousel of site images with navigation
+ * Uses useImageGallery hook for carousel logic
  * @param {Array} images - Array of image URLs
  * @param {String} siteName - Name of the site for alt text
  * @returns {JSX.Element}
  */
 function ImageGallery({ images = [], siteName = 'Heritage Site' }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const { currentIndex, handlePrevious, handleNext, handleThumbnailClick, handleKeyDown, hasImages } =
+    useImageGallery(images)
 
-  if (!images || images.length === 0) {
+  // Add keyboard navigation listener
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown])
+
+  if (!hasImages) {
     return (
       <div className={styles.gallery}>
         <div className={styles.emptyPlaceholder}>
@@ -19,18 +28,6 @@ function ImageGallery({ images = [], siteName = 'Heritage Site' }) {
         </div>
       </div>
     )
-  }
-
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
-  }
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-  }
-
-  const handleThumbnailClick = (index) => {
-    setCurrentIndex(index)
   }
 
   return (
