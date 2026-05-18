@@ -1,0 +1,182 @@
+.gallery {
+  width: 100%;
+  background-color: white;
+}
+
+.mainImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.navButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.prevButton {
+  left: var(--spacing-md);
+}
+
+.nextButton {
+  right: var(--spacing-md);
+}
+
+.counter {
+  position: absolute;
+  bottom: var(--spacing-md);
+  right: var(--spacing-md);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  z-index: 10;
+}
+
+.emptyPlaceholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: var(--gray);
+  font-size: var(--font-size-md);
+}
+
+.emptyPlaceholder p {
+  margin: 0;
+  text-align: center;
+}
+
+.thumbnailsContainer {
+  overflow-x: auto;
+  overflow-y: hidden;
+  background-color: #fafafa;
+  border-top: 1px solid var(--border);
+}
+
+.thumbnails {
+  display: flex;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  min-width: min-content;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  width: 80px;
+  height: 60px;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumbnail:hover {
+  border-color: var(--gray);
+  transform: scale(1.05);
+}
+
+.thumbnail.activeThumbnail {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary);
+}
+
+/* Scrollbar styling for thumbnails */
+.thumbnailsContainer::-webkit-scrollbar {
+  height: 4px;
+}
+
+.thumbnailsContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thumbnailsContainer::-webkit-scrollbar-thumb {
+  background-color: var(--gray);
+  border-radius: 2px;
+}
+
+.thumbnailsContainer::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dark);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .mainImageContainer {
+    aspect-ratio: 4 / 3;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+  }
+
+  .prevButton {
+    left: var(--spacing-sm);
+  }
+
+  .nextButton {
+    right: var(--spacing-sm);
+  }
+
+  .counter {
+    bottom: var(--spacing-sm);
+    right: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+
+  .thumbnail {
+    width: 60px;
+    height: 45px;
+  }
+
+  .thumbnails {
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs);
+  }
+}
