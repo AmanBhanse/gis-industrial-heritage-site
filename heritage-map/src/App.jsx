@@ -42,6 +42,7 @@ function App() {
       <main className="app-main">
         <MapContainer 
           sites={heritageData.sites} 
+          selectedSite={selectedSite}
           onMarkerClick={handleMarkerClick}
         />
         {selectedSite ? (

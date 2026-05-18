@@ -17,13 +17,26 @@ L.Icon.Default.mergeOptions({
  * MapContainer Component
  * Displays the Leaflet map centered on Kaiserslautern with interactive features
  * @param {Array} sites - Array of heritage sites to display
+ * @param {Object} selectedSite - Currently selected site
  * @param {Function} onMarkerClick - Callback when a marker is clicked
  * @returns {JSX.Element}
  */
-function MapContainerComponent({ sites = [], onMarkerClick = () => {} }) {
+function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {} }) {
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 12
   const [activeLayer, setActiveLayer] = useState('osm')
+
+  // Create an active/highlighted marker icon
+  const createActiveMarkerIcon = (category) => {
+    const baseIcon = createCategoryIcon(category)
+    return L.icon({
+      ...baseIcon.options,
+      iconSize: [50, 50],
+      iconAnchor: [25, 50],
+      popupAnchor: [0, -50],
+      className: 'active-marker',
+    })
+  }
 
   return (
     <div className={styles.mapContainer}>
@@ -53,7 +66,7 @@ function MapContainerComponent({ sites = [], onMarkerClick = () => {} }) {
           <Marker
             key={site.id}
             position={[site.lat, site.lng]}
-            icon={createCategoryIcon(site.category)}
+            icon={selectedSite?.id === site.id ? createActiveMarkerIcon(site.category) : createCategoryIcon(site.category)}
             eventHandlers={{
               click: () => onMarkerClick(site),
             }}
