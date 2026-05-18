@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo } from "react";
 
 /**
  * useFilteredSites Hook
@@ -8,34 +8,35 @@ import { useMemo } from 'react'
  * @returns {Array} Filtered sites array
  */
 export function useFilteredSites(sites = [], filters = {}) {
-  const { categories = [], eras = [], statuses = [] } = filters
+  const { categories = [], eras = [], statuses = [] } = filters;
 
   return useMemo(() => {
-    if (!sites || sites.length === 0) return []
+    if (!sites || sites.length === 0) return [];
 
     // If no filters are active, return all sites
-    const hasFilters = categories.length > 0 || eras.length > 0 || statuses.length > 0
-    if (!hasFilters) return sites
+    const hasFilters =
+      categories.length > 0 || eras.length > 0 || statuses.length > 0;
+    if (!hasFilters) return sites;
 
     return sites.filter((site) => {
       // Check category filter
       if (categories.length > 0 && !categories.includes(site.category)) {
-        return false
+        return false;
       }
 
       // Check era filter
       if (eras.length > 0 && !eras.includes(site.era)) {
-        return false
+        return false;
       }
 
       // Check status filter
       if (statuses.length > 0 && !statuses.includes(site.status)) {
-        return false
+        return false;
       }
 
-      return true
-    })
-  }, [sites, categories, eras, statuses])
+      return true;
+    });
+  }, [sites, categories, eras, statuses]);
 }
 
 /**
@@ -49,6 +50,9 @@ export function getFilterStats(sites = [], filteredSites = []) {
     total: sites.length,
     filtered: filteredSites.length,
     hidden: sites.length - filteredSites.length,
-    percentage: sites.length > 0 ? Math.round((filteredSites.length / sites.length) * 100) : 100,
-  }
+    percentage:
+      sites.length > 0
+        ? Math.round((filteredSites.length / sites.length) * 100)
+        : 100,
+  };
 }

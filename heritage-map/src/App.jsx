@@ -10,9 +10,22 @@ import heritageData from './data/heritage-sites.json'
 
 /**
  * Main App Component
- * Root component for Industrial Heritage Mapping application
+ * 
+ * Root component for Industrial Heritage Mapping application.
+ * Orchestrates data flow between map, filters, and site details.
+ * Manages global state for site selection and filter criteria.
+ * 
+ * @component
+ * @returns {JSX.Element} The main app container with header, map, and sidebar
+ * 
+ * @state {Object} selectedSite - Currently selected heritage site object or null
+ * @state {Object} filters - Active filter criteria { categories, eras, statuses }
+ * 
+ * @example
+ * <App />
  */
 function App() {
+  // State management
   const [selectedSite, setSelectedSite] = useState(null)
   const [filters, setFilters] = useState({
     categories: [],
@@ -20,22 +33,38 @@ function App() {
     statuses: []
   })
 
-  // Get filtered sites based on current filters
+  // Get filtered sites based on current filters using custom hook
   const filteredSites = useFilteredSites(heritageData.sites, filters)
 
-  // Handler for when a marker is clicked on the map
+  /**
+   * Handle marker click event from map
+   * @param {Object} site - Site object clicked on map
+   */
   const handleMarkerClick = (site) => {
     setSelectedSite(site)
   }
 
-  // Handler for when a site is selected from the list
+  /**
+   * Handle site selection from list
+   * @param {Object} site - Site object selected from list
+   */
   const handleSelectSite = (site) => {
     setSelectedSite(site)
   }
 
-  // Handler for when a filter changes
+  /**
+   * Handle filter changes from filter controls
+   * @param {Object} newFilters - Updated filter criteria
+   */
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters)
+  }
+
+  /**
+   * Handle closing site details panel
+   */
+  const handleCloseSiteDetails = () => {
+    setSelectedSite(null)
   }
 
   return (
