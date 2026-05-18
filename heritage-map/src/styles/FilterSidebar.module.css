@@ -1,0 +1,58 @@
+.filterSidebar {
+  background-color: white;
+  border-bottom: 1px solid var(--border);
+}
+
+.toggleContainer {
+  padding: 0;
+}
+
+.toggleButton {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  color: var(--dark);
+  transition: all var(--transition-fast);
+}
+
+.toggleButton:hover {
+  background: linear-gradient(135deg, #f0f1f2 0%, #f8f9fa 100%);
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 700;
+  font-size: var(--font-size-md);
+}
+
+.toggleIcon {
+  font-size: var(--font-size-sm);
+  transition: transform var(--transition-fast);
+  display: inline-block;
+}
+
+.toggleButton:hover .toggleIcon {
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toggleButton {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  .toggleLabel {
+    font-size: var(--font-size-sm);
+  }
+}
