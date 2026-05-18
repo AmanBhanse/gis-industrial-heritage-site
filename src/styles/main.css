@@ -80,6 +80,14 @@ body {
   letter-spacing: -0.3px;
 }
 
+/* React Root Element */
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Typography */
 h1,
 h2,

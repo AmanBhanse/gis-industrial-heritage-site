@@ -1,6 +1,14 @@
 /* Import global styles */
 @import './styles/main.css';
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
