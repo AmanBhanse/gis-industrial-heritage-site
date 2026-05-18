@@ -53,10 +53,24 @@ src/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 16.0+
 - npm 8.0+
 
-### Installation
+### Installation using pnpm (Recommended)
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+```
+
+### Installation using npm (Alternative)
 
 ```bash
 # Install dependencies
@@ -83,6 +97,7 @@ npm run preview
 ## 🎨 Design System
 
 **Colors:**
+
 - Primary: #2c3e50, Secondary: #3498db, Accent: #e74c3c
 - Categories: Factory (#8e44ad), Mine (#e67e22), Warehouse (#3498db), Railway (#16a085)
 
@@ -118,4 +133,3 @@ npm run preview
 ---
 
 **Status**: ✅ Production Ready | **Commits**: 20/31 | **Build**: Passing
-
