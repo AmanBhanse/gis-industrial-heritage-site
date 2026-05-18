@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet'
 import L from 'leaflet'
 import styles from '../styles/MapContainer.module.css'
 import TileLayerSwitcher from './TileLayerSwitcher'
+import { createCategoryIcon } from '../utils/markerIcons'
 
 // Fix leaflet default icons
 delete L.Icon.Default.prototype._getIconUrl
@@ -52,6 +53,7 @@ function MapContainerComponent({ sites = [], onMarkerClick = () => {} }) {
           <Marker
             key={site.id}
             position={[site.lat, site.lng]}
+            icon={createCategoryIcon(site.category)}
             eventHandlers={{
               click: () => onMarkerClick(site),
             }}
