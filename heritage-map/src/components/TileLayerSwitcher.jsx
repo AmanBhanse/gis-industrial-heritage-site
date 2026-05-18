@@ -1,4 +1,4 @@
-import styles from './TileLayerSwitcher.module.css'
+import styles from '../styles/TileLayerSwitcher.module.css'
 
 /**
  * TileLayerSwitcher Component

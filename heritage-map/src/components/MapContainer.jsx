@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet'
 import L from 'leaflet'
-import styles from './MapContainer.module.css'
+import styles from '../styles/MapContainer.module.css'
 import TileLayerSwitcher from './TileLayerSwitcher'
 
 // Fix leaflet default icons

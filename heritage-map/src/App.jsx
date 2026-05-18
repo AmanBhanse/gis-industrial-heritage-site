@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import MapContainer from './components/MapContainer'
+import heritageData from './data/heritage-sites.json'
 
 /**
  * Main App Component
@@ -13,6 +15,11 @@ function App() {
     statuses: []
   })
 
+  // Handler for when a marker is clicked on the map
+  const handleMarkerClick = (site) => {
+    setSelectedSite(site)
+  }
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -21,10 +28,10 @@ function App() {
       </header>
       
       <main className="app-main">
-        {/* Placeholder for future components */}
-        <div className="placeholder">
-          <p>Map components will be mounted here</p>
-        </div>
+        <MapContainer 
+          sites={heritageData.sites} 
+          onMarkerClick={handleMarkerClick}
+        />
       </main>
     </div>
   )
