@@ -5,6 +5,7 @@ import styles from '../styles/SiteDetails.module.css'
 /**
  * SiteDetails Component
  * Displays comprehensive information about a selected heritage site
+ * Features accessibility improvements with ARIA labels and semantic HTML
  * @param {Object} site - Selected heritage site object
  * @param {Function} onClose - Callback to close the details panel
  * @returns {JSX.Element}
@@ -12,7 +13,7 @@ import styles from '../styles/SiteDetails.module.css'
 function SiteDetails({ site = null, onClose = () => {} }) {
   if (!site) {
     return (
-      <div className={styles.siteDetails}>
+      <div className={styles.siteDetails} role="region" aria-label="Site details">
         <div className={styles.empty}>
           <p>👈 Select a site to view details</p>
         </div>
@@ -21,7 +22,7 @@ function SiteDetails({ site = null, onClose = () => {} }) {
   }
 
   return (
-    <div className={styles.siteDetails}>
+    <div className={styles.siteDetails} role="region" aria-label={`Details for ${site.name}`}>
       {/* Close button */}
       <button
         className={styles.closeButton}

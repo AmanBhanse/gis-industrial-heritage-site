@@ -13,11 +13,19 @@ import styles from '../styles/MarkerList.module.css'
 function MarkerList({ sites = [], selectedSite = null, onSelectSite = () => {} }) {
   const [searchTerm, setSearchTerm] = useState('')
 
-  // Filter sites based on search term
-  const filteredSites = sites.filter((site) =>
-    site.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    site.category.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  // Validate sites array
+  const validSites = Array.isArray(sites) ? sites : []
+
+  // Filter sites based on search term with safe property access
+  const filteredSites = validSites.filter((site) => {
+    if (!site || typeof site !== 'object') return false
+    const name = site.name ?? ''
+    const category = site.category ?? ''
+    return (
+      name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      category.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  })
 
   return (
     <div className={styles.markerList}>
