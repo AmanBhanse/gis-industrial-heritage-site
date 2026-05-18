@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import MapContainer from './components/MapContainer'
 import MarkerList from './components/MarkerList'
+import SiteDetails from './components/SiteDetails'
 import heritageData from './data/heritage-sites.json'
 
 /**
@@ -26,6 +27,11 @@ function App() {
     setSelectedSite(site)
   }
 
+  // Handler to close site details
+  const handleCloseSiteDetails = () => {
+    setSelectedSite(null)
+  }
+
   return (
     <div className="app-container">
       <header className="app-header">
@@ -38,11 +44,18 @@ function App() {
           sites={heritageData.sites} 
           onMarkerClick={handleMarkerClick}
         />
-        <MarkerList
-          sites={heritageData.sites}
-          selectedSite={selectedSite}
-          onSelectSite={handleSelectSite}
-        />
+        {selectedSite ? (
+          <SiteDetails
+            site={selectedSite}
+            onClose={handleCloseSiteDetails}
+          />
+        ) : (
+          <MarkerList
+            sites={heritageData.sites}
+            selectedSite={selectedSite}
+            onSelectSite={handleSelectSite}
+          />
+        )}
       </main>
     </div>
   )
