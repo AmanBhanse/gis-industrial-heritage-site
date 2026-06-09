@@ -82,6 +82,15 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
           />
         )}
 
+        {activeLayer === 'military1814' && (
+          <TileLayer
+            attribution='Historical map &copy; <a href="https://www.mapwarper.net/maps/107689">MapWarper</a> | Topographisch-militairische Charte (Weiland, 1814)'
+            url="https://mapwarper.net/maps/tile/107689/{z}/{x}/{y}.png"
+            maxZoom={18}
+            opacity={0.85}
+          />
+        )}
+
         {/* Polygon Areas */}
         <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />
 
