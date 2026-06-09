@@ -27,6 +27,7 @@ import heritageData from './data/heritage-sites.json'
 function App() {
   // State management
   const [selectedSite, setSelectedSite] = useState(null)
+  const [showRoute, setShowRoute] = useState(false)
   const [filters, setFilters] = useState({
     categories: [],
     eras: [],
@@ -79,6 +80,9 @@ function App() {
           sites={filteredSites} 
           selectedSite={selectedSite}
           onMarkerClick={handleMarkerClick}
+          allSites={heritageData.sites}
+          route={heritageData.route}
+          showRoute={showRoute}
         />
         <div className="sidebar">
           <FilterSidebar
@@ -92,6 +96,16 @@ function App() {
               filters={filters}
             />
           )}
+          <div className="route-toggle">
+            <label className="route-toggle-label">
+              <input
+                type="checkbox"
+                checked={showRoute}
+                onChange={(e) => setShowRoute(e.target.checked)}
+              />
+              <span>🗺️ Show walking tour route</span>
+            </label>
+          </div>
           {selectedSite ? (
             <SiteDetails
               site={selectedSite}

@@ -102,6 +102,33 @@
   background-color: white;
 }
 
+/* Route toggle */
+.route-toggle {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+  background-color: #fafafa;
+  flex-shrink: 0;
+}
+
+.route-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--dark);
+  user-select: none;
+}
+
+.route-toggle-label input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #1a5276;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
 /* Tablet: Narrower sidebar */
 @media (max-width: 1024px) {
   .sidebar {

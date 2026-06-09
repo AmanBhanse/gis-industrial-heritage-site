@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import styles from '../styles/MapContainer.module.css'
 import TileLayerSwitcher from './TileLayerSwitcher'
 import PolygonLayer from './PolygonLayer'
+import RouteLayer from './RouteLayer'
 import { createCategoryIcon } from '../utils/markerIcons'
 
 // Fix leaflet default icons
@@ -23,7 +24,7 @@ L.Icon.Default.mergeOptions({
  * @param {Function} onMarkerClick - Callback when a marker is clicked
  * @returns {JSX.Element}
  */
-function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {} }) {
+function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false }) {
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 12
   const [activeLayer, setActiveLayer] = useState('osm')
@@ -74,6 +75,9 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
         {/* Polygon Areas */}
         <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />
+
+        {/* Walking Tour Route */}
+        <RouteLayer sites={allSites} route={route} visible={showRoute} />
 
         {/* Site Markers */}
         {sites && sites.map((site) => (
