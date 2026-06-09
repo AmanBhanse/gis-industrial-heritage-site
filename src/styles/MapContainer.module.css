@@ -94,6 +94,54 @@
   opacity: 1;
 }
 
+/* Map Legend */
+.legend {
+  position: absolute;
+  bottom: 32px;
+  left: 10px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  font-size: 12px;
+  color: var(--dark);
+  min-width: 130px;
+}
+
+.legendTitle {
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+  color: var(--dark);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.legendItem:last-child {
+  margin-bottom: 0;
+}
+
+.legendSwatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  opacity: 0.7;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 /* Active marker styling */
 :global(.active-marker) {
   filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.7)) 

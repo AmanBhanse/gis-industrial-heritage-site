@@ -4,6 +4,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import styles from '../styles/MapContainer.module.css'
 import TileLayerSwitcher from './TileLayerSwitcher'
+import PolygonLayer from './PolygonLayer'
 import { createCategoryIcon } from '../utils/markerIcons'
 
 // Fix leaflet default icons
@@ -71,6 +72,9 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
           />
         )}
 
+        {/* Polygon Areas */}
+        <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />
+
         {/* Site Markers */}
         {sites && sites.map((site) => (
           <Marker
@@ -98,6 +102,19 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
       {/* Tile Layer Switcher */}
       <TileLayerSwitcher activeLayer={activeLayer} onLayerChange={setActiveLayer} />
+
+      {/* Map Legend */}
+      <div className={styles.legend}>
+        <div className={styles.legendTitle}>Flächentypen</div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendSwatch} style={{ backgroundColor: '#8e44ad' }} />
+          Werksgelände
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendSwatch} style={{ backgroundColor: '#27ae60' }} />
+          Arbeitersiedlung
+        </div>
+      </div>
     </div>
   )
 }
