@@ -73,6 +73,15 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
           />
         )}
 
+        {activeLayer === 'medieval' && (
+          <TileLayer
+            attribution='Historical map &copy; <a href="https://www.mapwarper.net/maps/52395">MapWarper</a> | Herrschaftsgebiete Pfalz 1789'
+            url="https://www.mapwarper.net/maps/tile/52395/{z}/{x}/{y}.png"
+            maxZoom={18}
+            opacity={0.75}
+          />
+        )}
+
         {/* Polygon Areas */}
         <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />
 

@@ -12,6 +12,7 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {} }) {
     { id: 'osm', label: 'Map', icon: '🗺️' },
     { id: 'satellite', label: 'Satellite', icon: '🛰️' },
     { id: 'historical', label: 'Topo', icon: '🏔️' },
+    { id: 'medieval', label: 'Historical', icon: '📜' },
   ]
 
   return (
