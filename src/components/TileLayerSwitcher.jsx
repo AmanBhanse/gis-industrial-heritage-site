@@ -11,6 +11,7 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {} }) {
   const layers = [
     { id: 'osm', label: 'Map', icon: '🗺️' },
     { id: 'satellite', label: 'Satellite', icon: '🛰️' },
+    { id: 'historical', label: 'Historical', icon: '📜' },
   ]
 
   return (

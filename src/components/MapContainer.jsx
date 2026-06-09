@@ -62,6 +62,15 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
           />
         )}
 
+        {activeLayer === 'historical' && (
+          <TileLayer
+            attribution='&copy; <a href="https://www.openhistoricalmap.org/">OpenHistoricalMap</a> contributors'
+            url="https://{s}.tile.openhistoricalmap.org/ohm-default/{z}/{x}/{y}.png"
+            subdomains="abc"
+            maxZoom={19}
+          />
+        )}
+
         {/* Site Markers */}
         {sites && sites.map((site) => (
           <Marker
