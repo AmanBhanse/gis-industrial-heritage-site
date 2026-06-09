@@ -256,7 +256,7 @@ function SiteDetailPanel({ site, onClose }) {
     <div className="flex flex-col h-full" style={{ background: D.bg, color: D.text }}>
       {/* Hero */}
       <div
-        className="px-4 pt-4 pb-5"
+        className="px-6 pt-5 pb-6"
         style={{
           background: `linear-gradient(135deg, ${color}28 0%, ${D.surface} 100%)`,
           borderBottom: `2px solid ${color}`,
@@ -264,23 +264,23 @@ function SiteDetailPanel({ site, onClose }) {
       >
         <button
           onClick={onClose}
-          className="flex items-center gap-1 text-xs mb-2 transition-opacity hover:opacity-100 opacity-50"
-          style={{ color: D.text }}
+          className="flex items-center gap-1.5 text-xs mb-3 transition-opacity hover:opacity-100 opacity-60"
+          style={{ color: D.muted }}
         >
-          <ArrowLeft className="size-3" />
+          <ArrowLeft className="size-4" />
           All sites
         </button>
-        <h2 className="text-base font-bold leading-snug" style={{ color: D.text }}>{site.name}</h2>
-        <div className="flex flex-wrap gap-1.5 mt-2">
+        <h2 className="text-lg font-bold leading-tight" style={{ color: D.text }}>{site.name}</h2>
+        <div className="flex flex-wrap gap-2.5 mt-4">
           <span
-            className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full border"
-            style={{ backgroundColor: color + '28', color, borderColor: color + '66' }}
+            className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-2 rounded-full border-2"
+            style={{ backgroundColor: color + '15', color, borderColor: color }}
           >
-            <Tag className="size-2.5" />{categoryLabel}
+            <Tag className="size-3.5" />{categoryLabel}
           </span>
           <span
-            className="inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full border capitalize"
-            style={{ background: statusStyle.bg, color: statusStyle.text, borderColor: statusStyle.border }}
+            className="inline-flex items-center text-xs font-semibold px-3.5 py-2 rounded-full border-2 capitalize"
+            style={{ background: statusStyle.bg, color: statusStyle.text, borderColor: statusStyle.text }}
           >
             {site.status}
           </span>
@@ -290,31 +290,30 @@ function SiteDetailPanel({ site, onClose }) {
       {/* Scrollable body */}
       <div className="flex-1 overflow-y-auto">
         {/* Stats row */}
-        <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${D.border}` }}>
+        <div className="grid grid-cols-3 px-6" style={{ borderBottom: `1px solid ${D.border}` }}>
           {[
-            { icon: <Clock className="size-3.5" />,      value: site.yearBuilt,       label: 'Built' },
-            { icon: <Activity className="size-3.5" />,   value: site.era,             label: 'Era' },
-            { icon: <Navigation className="size-3.5" />, value: site.lat.toFixed(3),  label: site.lng.toFixed(3) },
-          ].map(({ icon, value, label }, i) => (
+            { value: site.yearBuilt,       label: 'Built' },
+            { value: site.era,             label: 'Era' },
+            { value: site.lat.toFixed(3),  label: site.lng.toFixed(3) },
+          ].map(({ value, label }, i) => (
             <div
               key={i}
-              className="flex flex-col items-center py-3 gap-0.5"
+              className="flex flex-col py-5 px-3 gap-1.5 flex-1 text-center"
               style={{ borderRight: i < 2 ? `1px solid ${D.border}` : 'none' }}
             >
-              <span style={{ color: D.muted }}>{icon}</span>
-              <span className="text-xs font-bold" style={{ color: D.text }}>{value}</span>
-              <span className="text-[10px]" style={{ color: D.muted }}>{label}</span>
+              <span className="text-xs uppercase tracking-wider font-semibold" style={{ color: D.muted }}>{label}</span>
+              <span className="text-base font-bold" style={{ color: D.text }}>{value}</span>
             </div>
           ))}
         </div>
 
         {/* Images */}
         {site.images?.length > 0 && (
-          <div className="flex gap-2 px-4 py-3 overflow-x-auto" style={{ borderBottom: `1px solid ${D.border}` }}>
+          <div className="flex gap-3 py-5 px-6 overflow-x-auto" style={{ borderBottom: `1px solid ${D.border}` }}>
             {site.images.map((img, i) => (
               <img
                 key={i} src={img} alt={`${site.name} ${i + 1}`}
-                className="h-24 w-36 shrink-0 object-cover rounded-lg"
+                className="h-28 w-44 shrink-0 object-cover rounded-xl"
                 style={{ border: `1px solid ${D.border}` }}
                 onError={(e) => { e.target.style.display = 'none' }}
               />
@@ -324,22 +323,22 @@ function SiteDetailPanel({ site, onClose }) {
 
         {/* Description */}
         {site.description && (
-          <div className="px-4 py-3" style={{ borderBottom: `1px solid ${D.border}` }}>
-            <p className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: D.muted }}>History</p>
+          <div className="py-5 px-6" style={{ borderBottom: `1px solid ${D.border}` }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: D.muted }}>History</p>
             <p className="text-sm leading-relaxed" style={{ color: '#c8d0de' }}>{site.description}</p>
           </div>
         )}
 
         {/* Visitor info */}
         {site.additionalInfo && (
-          <div className="px-4 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: D.muted }}>Visitor Info</p>
+          <div className="px-6 py-5">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: D.muted }}>Visitor Info</p>
             <div
-              className="flex items-start gap-2 rounded-lg p-2.5"
+              className="flex items-start gap-3 rounded-lg p-4"
               style={{ background: '#92400e1a', border: '1px solid #92400e55' }}
             >
-              <span className="text-amber-400 text-sm mt-0.5">ℹ</span>
-              <p className="text-sm" style={{ color: '#fcd34d' }}>{site.additionalInfo}</p>
+              <span className="text-amber-400 text-lg mt-0.5 shrink-0">ℹ</span>
+              <p className="text-sm leading-relaxed" style={{ color: '#fcd34d' }}>{site.additionalInfo}</p>
             </div>
           </div>
         )}
