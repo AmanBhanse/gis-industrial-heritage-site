@@ -65,42 +65,10 @@ function AppSidebar({
 
   return (
     <div className="flex flex-col h-full" style={{ background: D.bg, color: D.text }}>
-      {/* Search bar */}
-      <div className="p-3" style={{ borderBottom: `1px solid ${D.border}` }}>
-        <div className="relative flex items-center">
-          <Search className="absolute left-2.5 size-4 pointer-events-none" style={{ color: D.muted }} />
-          <input
-            type="text"
-            placeholder="Search sites..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              paddingLeft: '2rem',
-              paddingRight: searchTerm ? '1.75rem' : '0.625rem',
-              background: D.input,
-              border: `1px solid ${D.border}`,
-              color: D.text,
-            }}
-            className="h-8 w-full rounded-lg py-1 text-sm outline-none transition-colors"
-          />
-          {searchTerm && (
-            <button onClick={() => setSearchTerm('')} className="absolute right-2" style={{ color: D.muted }}>
-              <X className="size-3.5" />
-            </button>
-          )}
-        </div>
-        <div className="flex items-center justify-between mt-2 text-xs" style={{ color: D.muted }}>
-          <span>{hasActiveFilters ? `${stats.filtered} of ${stats.total} sites` : `${stats.total} sites`}</span>
-          {hasActiveFilters && (
-            <button onClick={resetFilters} className="text-red-400 hover:text-red-300 font-medium">Clear filters</button>
-          )}
-        </div>
-      </div>
-
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-1 min-h-0">
         <TabsList
-          className="w-full rounded-none h-10 p-0 gap-0"
+          className="w-full rounded-none h-12 p-0 gap-0"
           style={{ background: D.surface, borderBottom: `1px solid ${D.border}` }}
         >
           {[
@@ -111,7 +79,7 @@ function AppSidebar({
             <TabsTrigger
               key={value}
               value={value}
-              className="flex-1 gap-1 rounded-none text-xs border-b-2 border-transparent data-[state=active]:shadow-none transition-colors"
+              className="flex-1 gap-1.5 rounded-none text-xs border-b-2 border-transparent data-[state=active]:shadow-none transition-colors py-3"
               style={{
                 color: activeTab === value ? '#60a5fa' : D.muted,
                 background: 'transparent',
@@ -127,14 +95,40 @@ function AppSidebar({
         </TabsList>
 
         {/* Sites list */}
-        <TabsContent value="sites" className="flex-1 overflow-y-auto m-0 p-0">
-          <ul>
+        <TabsContent value="sites" className="flex-1 overflow-y-auto m-0 p-0 flex flex-col">
+          {/* Search bar */}
+          <div className="px-4 py-5 shrink-0" style={{ borderBottom: `1px solid ${D.border}` }}>
+            <div className="relative flex items-center">
+              <Search className="absolute left-2.5 size-4 pointer-events-none" style={{ color: D.muted }} />
+              <input
+                type="text"
+                placeholder="Search sites..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  paddingLeft: '2rem',
+                  paddingRight: searchTerm ? '1.75rem' : '0.625rem',
+                  background: D.input,
+                  border: `1px solid ${D.border}`,
+                  color: D.text,
+                }}
+                className="h-9 w-full rounded-lg py-2 text-sm outline-none transition-colors"
+              />
+              {searchTerm && (
+                <button onClick={() => setSearchTerm('')} className="absolute right-2" style={{ color: D.muted }}>
+                  <X className="size-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+          
+          <ul className="flex-1 overflow-y-auto">
             {searchedSites.length > 0 ? (
               searchedSites.map((site) => (
                 <li key={site.id} style={{ borderBottom: `1px solid ${D.border}` }}>
                   <button
                     onClick={() => onSelectSite(site)}
-                    className="w-full text-left px-3 py-2.5 flex items-start gap-2.5 transition-colors group"
+                    className="w-full text-left px-4 py-3 flex items-start gap-3 transition-colors group"
                     style={{ color: D.text }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = D.hover)}
                     onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
@@ -156,8 +150,17 @@ function AppSidebar({
         </TabsContent>
 
         {/* Filters */}
-        <TabsContent value="filters" className="flex-1 overflow-y-auto m-0 p-0">
-          <div className="p-3 space-y-5">
+        <TabsContent value="filters" className="flex-1 overflow-y-auto m-0 p-0 flex flex-col">
+          {/* Filter header with stats and clear button */}
+          {hasActiveFilters && (
+            <div className="px-4 py-4 shrink-0" style={{ borderBottom: `1px solid ${D.border}` }}>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium" style={{ color: D.text }}>{stats.filtered} of {stats.total} sites</span>
+                <button onClick={resetFilters} className="text-xs text-red-400 hover:text-red-300 font-medium">Clear filters</button>
+              </div>
+            </div>
+          )}
+          <div className="p-4 space-y-6 flex-1">
             <FilterGroup title="Category" items={categories} selected={filters.categories || []}
               onToggle={(v) => toggleFilter('categories', v)} renderLabel={(c) => getCategoryLabel(c)} renderDot={(c) => getCategoryColor(c)} />
             <FilterGroup title="Era" items={eras} selected={filters.eras || []}
@@ -169,7 +172,7 @@ function AppSidebar({
 
         {/* Tour */}
         <TabsContent value="route" className="flex-1 overflow-y-auto m-0 p-0">
-          <div className="p-4 space-y-4">
+          <div className="p-4 space-y-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium" style={{ color: D.text }}>Walking Tour</p>
