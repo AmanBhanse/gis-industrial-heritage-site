@@ -12,6 +12,7 @@ export function createCategoryIcon(category) {
     mine: { emoji: "⛏️", color: "#e67e22", label: "Mine" },
     warehouse: { emoji: "📦", color: "#3498db", label: "Warehouse" },
     railway: { emoji: "🚂", color: "#16a085", label: "Railway" },
+    settlement: { emoji: "🏘️", color: "#27ae60", label: "Settlement" },
   };
 
   const config = iconConfig[category] || {
@@ -61,6 +62,7 @@ export function getCategoryColor(category) {
     mine: "#e67e22",
     warehouse: "#3498db",
     railway: "#16a085",
+    settlement: "#27ae60",
   };
   return colorMap[category] || "#2c3e50";
 }
@@ -76,6 +78,7 @@ export function getCategoryLabel(category) {
     mine: "Mine",
     warehouse: "Warehouse",
     railway: "Railway",
+    settlement: "Settlement",
   };
   return labelMap[category] || "Heritage Site";
 }

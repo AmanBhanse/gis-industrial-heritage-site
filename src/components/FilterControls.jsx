@@ -9,7 +9,7 @@ import styles from '../styles/FilterControls.module.css'
  * @returns {JSX.Element}
  */
 function FilterControls({ filters = {}, onFilterChange = () => {} }) {
-  const categories = ['factory', 'mine', 'warehouse', 'railway']
+  const categories = ['factory', 'mine', 'warehouse', 'railway', 'settlement']
   const eras = ['1800s', '1900-1950', '1950+']
   const statuses = ['active', 'converted', 'abandoned', 'museum']
 
