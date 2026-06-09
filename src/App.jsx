@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import Layout from './components/Layout'
+import Sidebar from './components/Sidebar'
 import MapContainer from './components/MapContainer'
 import MarkerList from './components/MarkerList'
 import SiteDetails from './components/SiteDetails'
@@ -68,59 +70,59 @@ function App() {
     setSelectedSite(null)
   }
 
-  return (
-    <div className="app-container">
-      <header className="app-header">
-        <h1>Industrial Heritage Map</h1>
-        <p>Explore the industrial history of Kaiserslautern</p>
-      </header>
-      
-      <main className="app-main">
-        <MapContainer 
-          sites={filteredSites} 
-          selectedSite={selectedSite}
-          onMarkerClick={handleMarkerClick}
-          allSites={heritageData.sites}
-          route={heritageData.route}
-          showRoute={showRoute}
-        />
-        <div className="sidebar">
-          <FilterSidebar
-            filters={filters}
-            onFilterChange={handleFilterChange}
-          />
-          {!selectedSite && (
-            <FilterFeedback
-              sites={heritageData.sites}
-              filteredSites={filteredSites}
-              filters={filters}
-            />
-          )}
-          <div className="route-toggle">
-            <label className="route-toggle-label">
-              <input
-                type="checkbox"
-                checked={showRoute}
-                onChange={(e) => setShowRoute(e.target.checked)}
-              />
-              <span>🗺️ Show walking tour route</span>
-            </label>
-          </div>
-          {selectedSite ? (
-            <SiteDetails
-              site={selectedSite}
-              onClose={handleCloseSiteDetails}
-            />
-          ) : (
-            <MarkerList
-              sites={filteredSites}
-              selectedSite={selectedSite}
-              onSelectSite={handleSelectSite}
-            />
-          )}
-        </div>
-      </main>
+  const headerContent = (
+    <div className="header-inner">
+      <span className="header-icon">🏭</span>
+      <div className="header-text">
+        <span className="header-title">Industrial Heritage Map</span>
+        <span className="header-subtitle">Kaiserslautern</span>
+      </div>
     </div>
+  )
+
+  const sidebarContent = (
+    <Sidebar>
+      <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
+      {!selectedSite && (
+        <FilterFeedback
+          sites={heritageData.sites}
+          filteredSites={filteredSites}
+          filters={filters}
+        />
+      )}
+      <div className="route-toggle">
+        <label className="route-toggle-label">
+          <input
+            type="checkbox"
+            checked={showRoute}
+            onChange={(e) => setShowRoute(e.target.checked)}
+          />
+          <span>🗺️ Show walking tour route</span>
+        </label>
+      </div>
+      {selectedSite ? (
+        <SiteDetails site={selectedSite} onClose={handleCloseSiteDetails} />
+      ) : (
+        <MarkerList
+          sites={filteredSites}
+          selectedSite={selectedSite}
+          onSelectSite={handleSelectSite}
+        />
+      )}
+    </Sidebar>
+  )
+
+  return (
+    <Layout header={headerContent} sidebar={sidebarContent}>
+      <MapContainer
+        sites={filteredSites}
+        selectedSite={selectedSite}
+        onMarkerClick={handleMarkerClick}
+        allSites={heritageData.sites}
+        route={heritageData.route}
+        showRoute={showRoute}
+      />
+    </Layout>
   )
 }
 

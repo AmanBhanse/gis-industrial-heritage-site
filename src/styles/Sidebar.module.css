@@ -1,0 +1,34 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Each direct child that should not grow */
+.sidebar > * {
+  flex-shrink: 0;
+}
+
+/* The list / details panel grows to fill remaining space */
+.sidebar > *:last-child {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* Thin custom scrollbar */
+.sidebar > *:last-child::-webkit-scrollbar {
+  width: 5px;
+}
+.sidebar > *:last-child::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar > *:last-child::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+.sidebar > *:last-child::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
