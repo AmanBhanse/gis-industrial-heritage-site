@@ -32,30 +32,3 @@
   text-transform: uppercase;
 }
 
-/* ── Route toggle (inside sidebar) ── */
-.route-toggle {
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  background-color: #fafafa;
-  flex-shrink: 0;
-}
-
-.route-toggle-label {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  cursor: pointer;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--dark);
-  user-select: none;
-}
-
-.route-toggle-label input[type='checkbox'] {
-  width: 16px;
-  height: 16px;
-  accent-color: #1a5276;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-

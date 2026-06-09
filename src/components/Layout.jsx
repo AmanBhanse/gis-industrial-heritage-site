@@ -30,11 +30,11 @@ function Layout({ header, sidebar, children }) {
         <aside
           onTransitionEnd={handleTransitionEnd}
           className={cn(
-            'shrink-0 bg-white border-r border-gray-200 shadow-sm overflow-hidden transition-[width] duration-200 ease-in-out',
+            'shrink-0 bg-white border-r border-gray-200 shadow-sm overflow-hidden transition-[width] duration-200 ease-in-out flex flex-col',
             open ? 'w-[340px]' : 'w-0'
           )}
         >
-          <div className="w-[340px] h-full overflow-y-auto overflow-x-hidden">
+          <div className="w-[340px] flex flex-col flex-1 min-h-0 overflow-hidden">
             {sidebar}
           </div>
         </aside>

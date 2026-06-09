@@ -1,12 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import Layout from './components/Layout'
-import Sidebar from './components/Sidebar'
+import AppSidebar from './components/AppSidebar'
 import MapContainer from './components/MapContainer'
-import MarkerList from './components/MarkerList'
-import SiteDetails from './components/SiteDetails'
-import FilterSidebar from './components/FilterSidebar'
-import FilterFeedback from './components/FilterFeedback'
 import { useFilteredSites } from './hooks/useFilteredSites'
 import heritageData from './data/heritage-sites.json'
 
@@ -81,35 +77,17 @@ function App() {
   )
 
   const sidebarContent = (
-    <Sidebar>
-      <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
-      {!selectedSite && (
-        <FilterFeedback
-          sites={heritageData.sites}
-          filteredSites={filteredSites}
-          filters={filters}
-        />
-      )}
-      <div className="route-toggle">
-        <label className="route-toggle-label">
-          <input
-            type="checkbox"
-            checked={showRoute}
-            onChange={(e) => setShowRoute(e.target.checked)}
-          />
-          <span>🗺️ Show walking tour route</span>
-        </label>
-      </div>
-      {selectedSite ? (
-        <SiteDetails site={selectedSite} onClose={handleCloseSiteDetails} />
-      ) : (
-        <MarkerList
-          sites={filteredSites}
-          selectedSite={selectedSite}
-          onSelectSite={handleSelectSite}
-        />
-      )}
-    </Sidebar>
+    <AppSidebar
+      sites={heritageData.sites}
+      filteredSites={filteredSites}
+      filters={filters}
+      onFilterChange={handleFilterChange}
+      selectedSite={selectedSite}
+      onSelectSite={handleSelectSite}
+      onCloseSiteDetails={handleCloseSiteDetails}
+      showRoute={showRoute}
+      onRouteToggle={setShowRoute}
+    />
   )
 
   return (
