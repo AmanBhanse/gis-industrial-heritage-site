@@ -66,9 +66,9 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
         {activeLayer === 'historical' && (
           <TileLayer
-            attribution='&copy; <a href="https://www.openhistoricalmap.org/">OpenHistoricalMap</a> contributors'
-            url="https://{s}.tile.openhistoricalmap.org/ohm-default/{z}/{x}/{y}.png"
-            subdomains="abc"
+            attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
+            subdomains="abcd"
             maxZoom={19}
           />
         )}
