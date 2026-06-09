@@ -14,7 +14,8 @@
         "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400",
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
       ],
-      "additionalInfo": "Guided tours available on weekends"
+      "additionalInfo": "Guided tours available on weekends",
+      "polygon": [[49.4472, 7.7560], [49.4472, 7.7590], [49.4454, 7.7590], [49.4454, 7.7560]]
     },
     {
       "id": 2,
@@ -62,7 +63,8 @@
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
         "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
       ],
-      "additionalInfo": "Mixed-use development with 85 residential units"
+      "additionalInfo": "Mixed-use development with 85 residential units",
+      "polygon": [[49.4516, 7.7604], [49.4516, 7.7620], [49.4504, 7.7620], [49.4504, 7.7604]]
     },
     {
       "id": 5,
@@ -78,7 +80,8 @@
         "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400",
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
       ],
-      "additionalInfo": "Operating as specialty metal foundry"
+      "additionalInfo": "Operating as specialty metal foundry",
+      "polygon": [[49.4305, 7.7412], [49.4305, 7.7434], [49.4291, 7.7434], [49.4291, 7.7412]]
     },
     {
       "id": 6,
@@ -94,7 +97,8 @@
         "https://images.unsplash.com/photo-1581092916892-8ff080ef069b?w=400",
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
       ],
-      "additionalInfo": "Restricted access - structural assessment ongoing"
+      "additionalInfo": "Restricted access - structural assessment ongoing",
+      "polygon": [[49.4364, 7.7488], [49.4364, 7.7514], [49.4348, 7.7514], [49.4348, 7.7488]]
     },
     {
       "id": 7,
@@ -110,7 +114,8 @@
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
         "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
       ],
-      "additionalInfo": "Cultural district with regular art events"
+      "additionalInfo": "Cultural district with regular art events",
+      "polygon": [[49.4456, 7.7540], [49.4456, 7.7572], [49.4434, 7.7572], [49.4434, 7.7540]]
     },
     {
       "id": 8,
@@ -126,7 +131,8 @@
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
         "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
       ],
-      "additionalInfo": "Museum open Saturdays and Sundays 10am-4pm"
+      "additionalInfo": "Museum open Saturdays and Sundays 10am-4pm",
+      "polygon": [[49.4392, 7.7526], [49.4392, 7.7542], [49.4378, 7.7542], [49.4378, 7.7526]]
     },
     {
       "id": 9,
@@ -159,6 +165,58 @@
         "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
       ],
       "additionalInfo": "Company tours available for groups"
+    },
+    {
+      "id": 11,
+      "name": "Betzenberg Workers' Settlement",
+      "category": "settlement",
+      "yearBuilt": 1895,
+      "status": "converted",
+      "era": "1800s",
+      "lat": 49.4480,
+      "lng": 7.7730,
+      "description": "Built in 1895 to house steelworkers and their families, the Betzenberg settlement was one of the first planned workers' quarters in the Kaiserslautern region. The uniform red-brick terrace houses with small gardens reflect the paternalistic social housing philosophy of the era. Many original structures survive and the district has been designated a protected heritage zone.",
+      "images": [
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400",
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400"
+      ],
+      "additionalInfo": "Heritage conservation zone since 2003",
+      "polygon": [[49.4492, 7.7718], [49.4492, 7.7742], [49.4468, 7.7746], [49.4466, 7.7724], [49.4474, 7.7714]]
+    },
+    {
+      "id": 12,
+      "name": "Westpfalz Arbeitersiedlung",
+      "category": "settlement",
+      "yearBuilt": 1910,
+      "status": "active",
+      "era": "1900-1950",
+      "lat": 49.4330,
+      "lng": 7.7450,
+      "description": "Developed between 1910 and 1925 by the Westpfalz Mining Company to accommodate the growing workforce of nearby coal mines, this settlement exemplifies early-20th-century company housing. The district features a central square, communal garden plots, and a preserved company-built school building. Most homes remain in residential use today.",
+      "images": [
+        "https://images.unsplash.com/photo-1474487548417-552864b1330b?w=400",
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400"
+      ],
+      "additionalInfo": "Annual heritage open day in September",
+      "polygon": [[49.4341, 7.7438], [49.4341, 7.7462], [49.4319, 7.7460], [49.4318, 7.7440]]
+    },
+    {
+      "id": 13,
+      "name": "Erfenbach Railway Workers' Quarter",
+      "category": "settlement",
+      "yearBuilt": 1882,
+      "status": "active",
+      "era": "1800s",
+      "lat": 49.4580,
+      "lng": 7.7620,
+      "description": "Established in 1882 alongside the expansion of the Palatinate railway network, this quarter was built to house railway engineers, drivers, and maintenance workers. The characteristic two-storey sandstone houses follow a standardised Prussian railway housing design found across Germany. Several buildings retain original details including railway company plaques and decorative ironwork.",
+      "images": [
+        "https://images.unsplash.com/photo-1474487548417-552864b1330b?w=400",
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400"
+      ],
+      "additionalInfo": "Plaque trail self-guided tour available",
+      "polygon": [[49.4593, 7.7608], [49.4593, 7.7632], [49.4568, 7.7634], [49.4566, 7.7610]]
     }
-  ]
+  ],
+  "route": [1, 7, 4, 9, 13, 11, 3, 8, 6, 2, 10, 5, 12]
 }
