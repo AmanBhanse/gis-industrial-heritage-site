@@ -1,7 +1,5 @@
 import { Polygon, Tooltip } from 'react-leaflet'
 
-const WERKSGELAENDE_CATEGORIES = ['factory', 'mine', 'warehouse', 'railway']
-
 const POLYGON_STYLES = {
   werksgelaende: {
     color: '#8e44ad',
