@@ -6,6 +6,7 @@ import styles from '../styles/MapContainer.module.css'
 import TileLayerSwitcher from './TileLayerSwitcher'
 import PolygonLayer from './PolygonLayer'
 import RouteLayer from './RouteLayer'
+import MapLibreLayer from './MapLibreLayer'
 import { createCategoryIcon } from '../utils/markerIcons'
 
 // Fix leaflet default icons
@@ -28,6 +29,7 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 12
   const [activeLayer, setActiveLayer] = useState('osm')
+  const [ohmYear, setOhmYear] = useState(1800)
 
   // Create an active/highlighted marker icon
   const createActiveMarkerIcon = (category) => {
@@ -91,6 +93,13 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
           />
         )}
 
+        {activeLayer === 'ohm' && (
+          <MapLibreLayer
+            styleUrl="https://www.openhistoricalmap.org/map-styles/main/main.json"
+            year={ohmYear}
+          />
+        )}
+
         {/* Polygon Areas */}
         <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />
 
@@ -124,6 +133,47 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
       {/* Tile Layer Switcher */}
       <TileLayerSwitcher activeLayer={activeLayer} onLayerChange={setActiveLayer} />
+
+      {/* OHM Year Slider — shown only when OHM layer is active */}
+      {activeLayer === 'ohm' && (
+        <div style={{
+          position: 'absolute',
+          bottom: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1000,
+          background: 'rgba(19, 25, 41, 0.92)',
+          border: '1px solid #283448',
+          borderRadius: '0.75rem',
+          padding: '0.75rem 1.25rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+          backdropFilter: 'blur(6px)',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+          userSelect: 'none',
+        }}>
+          <span style={{ fontSize: '1rem' }}>🕰️</span>
+          <input
+            type="range"
+            min={500}
+            max={2025}
+            step={1}
+            value={ohmYear}
+            onChange={(e) => setOhmYear(Number(e.target.value))}
+            style={{ width: '220px', accentColor: '#60a5fa', cursor: 'pointer' }}
+            aria-label="Historical year filter"
+          />
+          <span style={{
+            fontFamily: 'monospace',
+            fontSize: '1.1rem',
+            fontWeight: 700,
+            color: '#60a5fa',
+            minWidth: '3.5rem',
+            textAlign: 'right',
+          }}>{ohmYear}</span>
+        </div>
+      )}
 
       {/* Map Legend */}
       <div className={styles.legend}>

@@ -15,6 +15,7 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {} }) {
       layers: [
         { id: 'medieval', label: 'Pfalz 1789', icon: '📜' },
         { id: 'military1814', label: 'Military 1814', icon: '🪖' },
+        { id: 'ohm', label: 'OHM', icon: '🏛️' },
       ],
     },
   ]
