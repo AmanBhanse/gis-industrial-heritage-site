@@ -65,42 +65,10 @@ function AppSidebar({
 
   return (
     <div className="flex flex-col h-full" style={{ background: D.bg, color: D.text }}>
-      {/* Search bar */}
-      <div className="p-3" style={{ borderBottom: `1px solid ${D.border}` }}>
-        <div className="relative flex items-center">
-          <Search className="absolute left-2.5 size-4 pointer-events-none" style={{ color: D.muted }} />
-          <input
-            type="text"
-            placeholder="Search sites..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              paddingLeft: '2rem',
-              paddingRight: searchTerm ? '1.75rem' : '0.625rem',
-              background: D.input,
-              border: `1px solid ${D.border}`,
-              color: D.text,
-            }}
-            className="h-8 w-full rounded-lg py-1 text-sm outline-none transition-colors"
-          />
-          {searchTerm && (
-            <button onClick={() => setSearchTerm('')} className="absolute right-2" style={{ color: D.muted }}>
-              <X className="size-3.5" />
-            </button>
-          )}
-        </div>
-        <div className="flex items-center justify-between mt-2 text-xs" style={{ color: D.muted }}>
-          <span>{hasActiveFilters ? `${stats.filtered} of ${stats.total} sites` : `${stats.total} sites`}</span>
-          {hasActiveFilters && (
-            <button onClick={resetFilters} className="text-red-400 hover:text-red-300 font-medium">Clear filters</button>
-          )}
-        </div>
-      </div>
-
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-1 min-h-0">
         <TabsList
-          className="w-full rounded-none h-10 p-0 gap-0"
+          className="w-full rounded-none h-12 p-0 gap-0"
           style={{ background: D.surface, borderBottom: `1px solid ${D.border}` }}
         >
           {[
@@ -111,7 +79,7 @@ function AppSidebar({
             <TabsTrigger
               key={value}
               value={value}
-              className="flex-1 gap-1 rounded-none text-xs border-b-2 border-transparent data-[state=active]:shadow-none transition-colors"
+              className="flex-1 gap-1.5 rounded-none text-xs border-b-2 border-transparent data-[state=active]:shadow-none transition-colors py-3"
               style={{
                 color: activeTab === value ? '#60a5fa' : D.muted,
                 background: 'transparent',
@@ -127,14 +95,40 @@ function AppSidebar({
         </TabsList>
 
         {/* Sites list */}
-        <TabsContent value="sites" className="flex-1 overflow-y-auto m-0 p-0">
-          <ul>
+        <TabsContent value="sites" className="flex-1 overflow-y-auto m-0 p-0 flex flex-col">
+          {/* Search bar */}
+          <div className="px-4 py-5 shrink-0" style={{ borderBottom: `1px solid ${D.border}` }}>
+            <div className="relative flex items-center">
+              <Search className="absolute left-2.5 size-4 pointer-events-none" style={{ color: D.muted }} />
+              <input
+                type="text"
+                placeholder="Search sites..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  paddingLeft: '2rem',
+                  paddingRight: searchTerm ? '1.75rem' : '0.625rem',
+                  background: D.input,
+                  border: `1px solid ${D.border}`,
+                  color: D.text,
+                }}
+                className="h-9 w-full rounded-lg py-2 text-sm outline-none transition-colors"
+              />
+              {searchTerm && (
+                <button onClick={() => setSearchTerm('')} className="absolute right-2" style={{ color: D.muted }}>
+                  <X className="size-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+          
+          <ul className="flex-1 overflow-y-auto">
             {searchedSites.length > 0 ? (
               searchedSites.map((site) => (
                 <li key={site.id} style={{ borderBottom: `1px solid ${D.border}` }}>
                   <button
                     onClick={() => onSelectSite(site)}
-                    className="w-full text-left px-3 py-2.5 flex items-start gap-2.5 transition-colors group"
+                    className="w-full text-left px-4 py-3 flex items-start gap-3 transition-colors group"
                     style={{ color: D.text }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = D.hover)}
                     onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
@@ -156,8 +150,17 @@ function AppSidebar({
         </TabsContent>
 
         {/* Filters */}
-        <TabsContent value="filters" className="flex-1 overflow-y-auto m-0 p-0">
-          <div className="p-3 space-y-5">
+        <TabsContent value="filters" className="flex-1 overflow-y-auto m-0 p-0 flex flex-col">
+          {/* Filter header with stats and clear button */}
+          {hasActiveFilters && (
+            <div className="px-4 py-4 shrink-0" style={{ borderBottom: `1px solid ${D.border}` }}>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium" style={{ color: D.text }}>{stats.filtered} of {stats.total} sites</span>
+                <button onClick={resetFilters} className="text-xs text-red-400 hover:text-red-300 font-medium">Clear filters</button>
+              </div>
+            </div>
+          )}
+          <div className="p-4 space-y-6 flex-1">
             <FilterGroup title="Category" items={categories} selected={filters.categories || []}
               onToggle={(v) => toggleFilter('categories', v)} renderLabel={(c) => getCategoryLabel(c)} renderDot={(c) => getCategoryColor(c)} />
             <FilterGroup title="Era" items={eras} selected={filters.eras || []}
@@ -169,7 +172,7 @@ function AppSidebar({
 
         {/* Tour */}
         <TabsContent value="route" className="flex-1 overflow-y-auto m-0 p-0">
-          <div className="p-4 space-y-4">
+          <div className="p-4 space-y-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium" style={{ color: D.text }}>Walking Tour</p>
@@ -253,7 +256,7 @@ function SiteDetailPanel({ site, onClose }) {
     <div className="flex flex-col h-full" style={{ background: D.bg, color: D.text }}>
       {/* Hero */}
       <div
-        className="px-4 pt-4 pb-5"
+        className="px-6 pt-5 pb-6"
         style={{
           background: `linear-gradient(135deg, ${color}28 0%, ${D.surface} 100%)`,
           borderBottom: `2px solid ${color}`,
@@ -261,23 +264,23 @@ function SiteDetailPanel({ site, onClose }) {
       >
         <button
           onClick={onClose}
-          className="flex items-center gap-1 text-xs mb-2 transition-opacity hover:opacity-100 opacity-50"
-          style={{ color: D.text }}
+          className="flex items-center gap-1.5 text-xs mb-3 transition-opacity hover:opacity-100 opacity-60"
+          style={{ color: D.muted }}
         >
-          <ArrowLeft className="size-3" />
+          <ArrowLeft className="size-4" />
           All sites
         </button>
-        <h2 className="text-base font-bold leading-snug" style={{ color: D.text }}>{site.name}</h2>
-        <div className="flex flex-wrap gap-1.5 mt-2">
+        <h2 className="text-lg font-bold leading-tight" style={{ color: D.text }}>{site.name}</h2>
+        <div className="flex flex-wrap gap-2.5 mt-4">
           <span
-            className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full border"
-            style={{ backgroundColor: color + '28', color, borderColor: color + '66' }}
+            className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-2 rounded-full border-2"
+            style={{ backgroundColor: color + '15', color, borderColor: color }}
           >
-            <Tag className="size-2.5" />{categoryLabel}
+            <Tag className="size-3.5" />{categoryLabel}
           </span>
           <span
-            className="inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full border capitalize"
-            style={{ background: statusStyle.bg, color: statusStyle.text, borderColor: statusStyle.border }}
+            className="inline-flex items-center text-xs font-semibold px-3.5 py-2 rounded-full border-2 capitalize"
+            style={{ background: statusStyle.bg, color: statusStyle.text, borderColor: statusStyle.text }}
           >
             {site.status}
           </span>
@@ -287,31 +290,30 @@ function SiteDetailPanel({ site, onClose }) {
       {/* Scrollable body */}
       <div className="flex-1 overflow-y-auto">
         {/* Stats row */}
-        <div className="grid grid-cols-3" style={{ borderBottom: `1px solid ${D.border}` }}>
+        <div className="grid grid-cols-3 px-6" style={{ borderBottom: `1px solid ${D.border}` }}>
           {[
-            { icon: <Clock className="size-3.5" />,      value: site.yearBuilt,       label: 'Built' },
-            { icon: <Activity className="size-3.5" />,   value: site.era,             label: 'Era' },
-            { icon: <Navigation className="size-3.5" />, value: site.lat.toFixed(3),  label: site.lng.toFixed(3) },
-          ].map(({ icon, value, label }, i) => (
+            { value: site.yearBuilt,       label: 'Built' },
+            { value: site.era,             label: 'Era' },
+            { value: site.lat.toFixed(3),  label: site.lng.toFixed(3) },
+          ].map(({ value, label }, i) => (
             <div
               key={i}
-              className="flex flex-col items-center py-3 gap-0.5"
+              className="flex flex-col py-5 px-3 gap-1.5 flex-1 text-center"
               style={{ borderRight: i < 2 ? `1px solid ${D.border}` : 'none' }}
             >
-              <span style={{ color: D.muted }}>{icon}</span>
-              <span className="text-xs font-bold" style={{ color: D.text }}>{value}</span>
-              <span className="text-[10px]" style={{ color: D.muted }}>{label}</span>
+              <span className="text-xs uppercase tracking-wider font-semibold" style={{ color: D.muted }}>{label}</span>
+              <span className="text-base font-bold" style={{ color: D.text }}>{value}</span>
             </div>
           ))}
         </div>
 
         {/* Images */}
         {site.images?.length > 0 && (
-          <div className="flex gap-2 px-4 py-3 overflow-x-auto" style={{ borderBottom: `1px solid ${D.border}` }}>
+          <div className="flex gap-3 py-5 px-6 overflow-x-auto" style={{ borderBottom: `1px solid ${D.border}` }}>
             {site.images.map((img, i) => (
               <img
                 key={i} src={img} alt={`${site.name} ${i + 1}`}
-                className="h-24 w-36 shrink-0 object-cover rounded-lg"
+                className="h-28 w-44 shrink-0 object-cover rounded-xl"
                 style={{ border: `1px solid ${D.border}` }}
                 onError={(e) => { e.target.style.display = 'none' }}
               />
@@ -321,22 +323,22 @@ function SiteDetailPanel({ site, onClose }) {
 
         {/* Description */}
         {site.description && (
-          <div className="px-4 py-3" style={{ borderBottom: `1px solid ${D.border}` }}>
-            <p className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: D.muted }}>History</p>
+          <div className="py-5 px-6" style={{ borderBottom: `1px solid ${D.border}` }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: D.muted }}>History</p>
             <p className="text-sm leading-relaxed" style={{ color: '#c8d0de' }}>{site.description}</p>
           </div>
         )}
 
         {/* Visitor info */}
         {site.additionalInfo && (
-          <div className="px-4 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-widest mb-1.5" style={{ color: D.muted }}>Visitor Info</p>
+          <div className="px-6 py-5">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: D.muted }}>Visitor Info</p>
             <div
-              className="flex items-start gap-2 rounded-lg p-2.5"
+              className="flex items-start gap-3 rounded-lg p-4"
               style={{ background: '#92400e1a', border: '1px solid #92400e55' }}
             >
-              <span className="text-amber-400 text-sm mt-0.5">ℹ</span>
-              <p className="text-sm" style={{ color: '#fcd34d' }}>{site.additionalInfo}</p>
+              <span className="text-amber-400 text-lg mt-0.5 shrink-0">ℹ</span>
+              <p className="text-sm leading-relaxed" style={{ color: '#fcd34d' }}>{site.additionalInfo}</p>
             </div>
           </div>
         )}
