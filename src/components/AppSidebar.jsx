@@ -160,7 +160,7 @@ function AppSidebar({
               </div>
             </div>
           )}
-          <div className="p-4 space-y-6 flex-1">
+          <div className="p-6 pl-8 space-y-8 flex-1 overflow-y-auto">
             <FilterGroup title="Category" items={categories} selected={filters.categories || []}
               onToggle={(v) => toggleFilter('categories', v)} renderLabel={(c) => getCategoryLabel(c)} renderDot={(c) => getCategoryColor(c)} />
             <FilterGroup title="Era" items={eras} selected={filters.eras || []}
@@ -208,28 +208,38 @@ function AppSidebar({
 /* ── Filter group ── */
 function FilterGroup({ title, items, selected, onToggle, renderLabel, renderDot }) {
   return (
-    <div>
-      <p className="text-[10px] font-semibold uppercase tracking-widest mb-2" style={{ color: '#7a8499' }}>
+    <div className="pb-2">
+      <p className="text-xs font-bold uppercase tracking-widest mb-4 pl-4" style={{ color: '#60a5fa' }}>
         {title}
       </p>
-      <div className="space-y-1">
+      <div className="space-y-2.5">
         {items.map((item) => {
           const active = selected.includes(item)
           return (
             <button
               key={item}
               onClick={() => onToggle(item)}
-              className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-md text-sm transition-colors"
+              className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all"
               style={{
-                background: active ? '#2563eb22' : 'transparent',
+                background: active ? '#2563eb33' : 'transparent',
                 color: active ? '#60a5fa' : '#c8d0de',
-                border: active ? '1px solid #2563eb44' : '1px solid transparent',
+                border: active ? '1.5px solid #2563eb66' : '1.5px solid transparent',
               }}
-              onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = '#1b2336' }}
-              onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = 'transparent' }}
+              onMouseEnter={(e) => { 
+                if (!active) {
+                  e.currentTarget.style.background = '#1b2336'
+                  e.currentTarget.style.borderColor = '#283448'
+                }
+              }}
+              onMouseLeave={(e) => { 
+                if (!active) {
+                  e.currentTarget.style.background = 'transparent'
+                  e.currentTarget.style.borderColor = 'transparent'
+                }
+              }}
             >
               {renderDot && (
-                <span className="size-2.5 rounded-full shrink-0" style={{ backgroundColor: renderDot(item) }} />
+                <span className="size-3 rounded-full shrink-0" style={{ backgroundColor: renderDot(item) }} />
               )}
               <span>{renderLabel ? renderLabel(item) : item}</span>
             </button>
