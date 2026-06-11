@@ -15,6 +15,15 @@ const D = {
   input:   '#1a2540',
 }
 
+const DETAIL = {
+  title: '#ffffff',
+  body: '#e5eefb',
+  muted: '#a8b6c9',
+  panel: '#0b1322',
+  panelAlt: '#0f172a',
+  border: '#334155',
+}
+
 function getSculptureImageUrl(photo) {
   if (!photo) return null
   if (/^https?:\/\//i.test(photo)) return photo
@@ -457,8 +466,8 @@ function SiteDetailDialog({ site, onClose }) {
       <div
         className="relative flex flex-col w-full rounded-2xl p-4"
         style={{
-          background: '#0b1322',
-          border: `1px solid #3b4b63`,
+          background: DETAIL.panel,
+          border: `1px solid ${DETAIL.border}`,
           boxShadow: '0 24px 70px rgba(0,0,0,0.55)',
           maxWidth: '560px',
           maxHeight: '88vh',
@@ -467,14 +476,14 @@ function SiteDetailDialog({ site, onClose }) {
       >
         <div
           className="rounded-xl overflow-hidden"
-          style={{ background: '#0f172a', border: '1px solid #243248' }}
+          style={{ background: DETAIL.panelAlt, border: `1px solid ${DETAIL.border}` }}
         >
         {/* Header */}
-        <div className="px-8 pt-7 pb-5" style={{ borderBottom: `1px solid #273245` }}>
+        <div className="px-8 pt-7 pb-5" style={{ borderBottom: `1px solid ${DETAIL.border}` }}>
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
 
-              <h2 className="text-[1.85rem] font-extrabold leading-tight" style={{ color: '#f8fafc' }}>{site.name}</h2>
+              <h2 className="text-[1.85rem] font-extrabold leading-tight" style={{ color: DETAIL.title, textShadow: '0 1px 2px rgba(0,0,0,0.45)' }}>{site.name}</h2>
             </div>
             <button
               onClick={onClose}
@@ -492,7 +501,7 @@ function SiteDetailDialog({ site, onClose }) {
           <div className="flex flex-wrap gap-2 mt-4">
             <span
               className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
-              style={{ background: color + '1c', color }}
+              style={{ background: color + '22', color: DETAIL.title, border: `1px solid ${color}55` }}
             >
               <span className="size-1.5 rounded-full" style={{ background: color }} />
               {categoryLabel}
@@ -507,18 +516,18 @@ function SiteDetailDialog({ site, onClose }) {
         </div>
 
         {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto px-8 py-6" style={{ color: D.text }}>
+        <div className="flex-1 overflow-y-auto px-8 py-6" style={{ color: DETAIL.body }}>
 
           {/* Key facts */}
-          <div className="grid grid-cols-3 gap-4 pb-5" style={{ borderBottom: '1px solid #273245' }}>
+          <div className="grid grid-cols-3 gap-4 pb-5" style={{ borderBottom: `1px solid ${DETAIL.border}` }}>
             {[
               { label: 'Built',  value: site.yearBuilt || '—' },
               { label: 'Era',    value: site.era || '—' },
               { label: 'Coords', value: site.lat ? `${site.lat.toFixed(3)}, ${site.lng.toFixed(3)}` : '—' },
             ].map(({ label, value }) => (
               <div key={label} className="text-center">
-                <p className="text-[11px] font-semibold uppercase tracking-wider mb-1" style={{ color: '#8ea0bc' }}>{label}</p>
-                <p className="text-lg font-bold leading-tight" style={{ color: '#f1f5f9' }}>{value}</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wider mb-1" style={{ color: DETAIL.muted }}>{label}</p>
+                <p className="text-lg font-bold leading-tight" style={{ color: DETAIL.title, textShadow: '0 1px 1px rgba(0,0,0,0.35)' }}>{value}</p>
               </div>
             ))}
           </div>
@@ -547,11 +556,11 @@ function SiteDetailDialog({ site, onClose }) {
 
           {/* Description */}
           {site.description && (
-            <div className="pt-5 pb-5" style={{ borderBottom: '1px solid #273245' }}>
-              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: D.muted }}>
+            <div className="pt-5 pb-5" style={{ borderBottom: `1px solid ${DETAIL.border}` }}>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: DETAIL.muted }}>
                 History
               </p>
-              <p className="text-[1.06rem] leading-8" style={{ color: '#d3deee' }}>{site.description}</p>
+              <p className="text-[1.06rem] leading-8" style={{ color: DETAIL.body, textShadow: '0 1px 1px rgba(0,0,0,0.25)' }}>{site.description}</p>
             </div>
           )}
 
@@ -560,8 +569,8 @@ function SiteDetailDialog({ site, onClose }) {
             <div className="pt-5 flex items-start gap-3">
               <Info className="size-4 shrink-0 mt-0.5" style={{ color }} />
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: '#8ea0bc' }}>Visitor Info</p>
-                <p className="text-sm leading-relaxed" style={{ color: '#d3deee' }}>{site.additionalInfo}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: DETAIL.muted }}>Visitor Info</p>
+                <p className="text-sm leading-relaxed" style={{ color: DETAIL.body, textShadow: '0 1px 1px rgba(0,0,0,0.25)' }}>{site.additionalInfo}</p>
               </div>
             </div>
           )}
@@ -585,22 +594,22 @@ function SculptureDetailDialog({ sculpture, onClose }) {
       <div
         className="relative flex flex-col w-full rounded-2xl p-4"
         style={{
-          background: '#0b1322',
-          border: '1px solid #3b4b63',
+          background: DETAIL.panel,
+          border: `1px solid ${DETAIL.border}`,
           boxShadow: '0 24px 70px rgba(0,0,0,0.55)',
           maxWidth: '520px',
           maxHeight: '88vh',
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="rounded-xl overflow-hidden" style={{ background: '#0f172a', border: '1px solid #243248' }}>
-          <div className="px-8 pt-7 pb-5" style={{ borderBottom: '1px solid #273245' }}>
+        <div className="rounded-xl overflow-hidden" style={{ background: DETAIL.panelAlt, border: `1px solid ${DETAIL.border}` }}>
+          <div className="px-8 pt-7 pb-5" style={{ borderBottom: `1px solid ${DETAIL.border}` }}>
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
-                <h2 className="text-[1.85rem] font-extrabold leading-tight" style={{ color: '#f8fafc' }}>
+                <h2 className="text-[1.85rem] font-extrabold leading-tight" style={{ color: DETAIL.title, textShadow: '0 1px 2px rgba(0,0,0,0.45)' }}>
                   {sculpture.name || '(unnamed)'}
                 </h2>
-                <p className="mt-2 text-sm" style={{ color: '#8ea0bc' }}>Public art details</p>
+                <p className="mt-2 text-sm" style={{ color: DETAIL.muted }}>Public art details</p>
               </div>
               <button
                 onClick={onClose}
@@ -615,23 +624,23 @@ function SculptureDetailDialog({ sculpture, onClose }) {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-8 py-6" style={{ color: D.text }}>
-            <div className="grid grid-cols-3 gap-4 pb-5" style={{ borderBottom: '1px solid #273245' }}>
+          <div className="flex-1 overflow-y-auto px-8 py-6" style={{ color: DETAIL.body }}>
+            <div className="grid grid-cols-3 gap-4 pb-5" style={{ borderBottom: `1px solid ${DETAIL.border}` }}>
               {[
                 { label: 'Artist', value: sculpture.artist || '—' },
                 { label: 'Year', value: sculpture.year || '—' },
                 { label: 'Coords', value: sculpture.lat ? `${sculpture.lat.toFixed(3)}, ${sculpture.lng.toFixed(3)}` : '—' },
               ].map(({ label, value }) => (
                 <div key={label} className="text-center">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider mb-1" style={{ color: '#8ea0bc' }}>{label}</p>
-                  <p className="text-lg font-bold leading-tight" style={{ color: '#f1f5f9' }}>{value}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider mb-1" style={{ color: DETAIL.muted }}>{label}</p>
+                  <p className="text-lg font-bold leading-tight" style={{ color: DETAIL.title, textShadow: '0 1px 1px rgba(0,0,0,0.35)' }}>{value}</p>
                 </div>
               ))}
             </div>
 
             {imageUrl && (
-              <div className="pt-5 pb-5" style={{ borderBottom: '1px solid #273245' }}>
-                <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: D.muted }}>
+              <div className="pt-5 pb-5" style={{ borderBottom: `1px solid ${DETAIL.border}` }}>
+                <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: DETAIL.muted }}>
                   Image
                 </p>
                 <img
@@ -644,16 +653,16 @@ function SculptureDetailDialog({ sculpture, onClose }) {
               </div>
             )}
 
-            <div className="pt-5 pb-5" style={{ borderBottom: '1px solid #273245' }}>
-              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: D.muted }}>Location</p>
-              <p className="text-[1.06rem] leading-8" style={{ color: '#d3deee' }}>{sculpture.location || '—'}</p>
+            <div className="pt-5 pb-5" style={{ borderBottom: `1px solid ${DETAIL.border}` }}>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: DETAIL.muted }}>Location</p>
+              <p className="text-[1.06rem] leading-8" style={{ color: DETAIL.body, textShadow: '0 1px 1px rgba(0,0,0,0.25)' }}>{sculpture.location || '—'}</p>
             </div>
 
             <div className="pt-5 flex items-start gap-3">
               <Info className="size-4 shrink-0 mt-0.5" style={{ color: '#a78bfa' }} />
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: '#8ea0bc' }}>Category</p>
-                <p className="text-sm leading-relaxed" style={{ color: '#d3deee' }}>{sculpture.category || '—'}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: DETAIL.muted }}>Category</p>
+                <p className="text-sm leading-relaxed" style={{ color: DETAIL.body, textShadow: '0 1px 1px rgba(0,0,0,0.25)' }}>{sculpture.category || '—'}</p>
               </div>
             </div>
           </div>

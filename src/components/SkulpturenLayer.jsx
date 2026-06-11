@@ -40,9 +40,9 @@ function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculp
       }}
     >
       <Popup>
-        <div style={{ minWidth: 180, fontSize: 13 }}>
+        <div style={{ minWidth: 180, fontSize: 13, color: '#e5eefb' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
-            <strong style={{ fontSize: 14, lineHeight: 1.2 }}>{s.name || '(unnamed)'}</strong>
+            <strong style={{ fontSize: 14, lineHeight: 1.2, color: '#ffffff', textShadow: '0 1px 2px rgba(0,0,0,0.45)' }}>{s.name || '(unnamed)'}</strong>
             <button
               type="button"
               onClick={(e) => {
@@ -61,25 +61,25 @@ function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculp
                 justifyContent: 'center',
                 padding: 0,
                 borderRadius: 999,
-                border: '1px solid rgba(167, 139, 250, 0.18)',
-                background: 'rgba(167, 139, 250, 0.08)',
-                color: '#7c3aed',
+                border: '1px solid rgba(167, 139, 250, 0.2)',
+                background: 'rgba(167, 139, 250, 0.1)',
+                color: '#93c5fd',
                 cursor: 'pointer',
               }}
             >
               <Info size={14} />
             </button>
           </div>
-          {s.artist   && <p style={{ margin: '4px 0 0' }}>🎨 {s.artist}</p>}
-          {s.year     && <p style={{ margin: '2px 0 0' }}>📅 {s.year}</p>}
-          {s.location && <p style={{ margin: '2px 0 0' }}>📍 {s.location}</p>}
+          {s.artist   && <p style={{ margin: '4px 0 0', color: '#e5eefb', textShadow: '0 1px 1px rgba(0,0,0,0.28)' }}>🎨 {s.artist}</p>}
+          {s.year     && <p style={{ margin: '2px 0 0', color: '#e5eefb', textShadow: '0 1px 1px rgba(0,0,0,0.28)' }}>📅 {s.year}</p>}
+          {s.location && <p style={{ margin: '2px 0 0', color: '#e5eefb', textShadow: '0 1px 1px rgba(0,0,0,0.28)' }}>📍 {s.location}</p>}
           {s.category && (
             <p style={{ margin: '4px 0 0' }}>
               <span style={{
                 display: 'inline-block',
                 background: '#a78bfa22',
-                color: SCULPTURE_COLOR,
-                border: '1px solid #a78bfa55',
+                color: '#ddd6fe',
+                border: '1px solid #a78bfa75',
                 borderRadius: 4,
                 padding: '1px 6px',
                 fontSize: 11,
@@ -87,7 +87,7 @@ function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculp
               }}>{s.category}</span>
             </p>
           )}
-          <p style={{ margin: '4px 0 0', fontSize: 11, color: '#888' }}>Quelle: Geoportal Kaiserslautern</p>
+          <p style={{ margin: '4px 0 0', fontSize: 11, color: '#a8b6c9', textShadow: '0 1px 1px rgba(0,0,0,0.2)' }}>Quelle: Geoportal Kaiserslautern</p>
         </div>
       </Popup>
     </Marker>

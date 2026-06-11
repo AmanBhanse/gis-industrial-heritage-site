@@ -71,6 +71,14 @@
   padding: var(--spacing-md);
   min-width: 240px;
   max-width: 300px;
+  color: #f8fafc;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 19, 34, 0.98));
+  border-radius: 12px;
+}
+
+.popup,
+.popup * {
+  box-sizing: border-box;
 }
 
 .popupHeader {
@@ -83,11 +91,12 @@
 
 .popup h3 {
   margin: 0;
-  color: var(--dark);
+  color: #ffffff;
   font-size: var(--font-size-lg);
   font-weight: 700;
   letter-spacing: -0.3px;
   line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 .popupInfoButton {
@@ -99,17 +108,17 @@
   justify-content: center;
   padding: 0;
   border-radius: 999px;
-  border: 1px solid rgba(96, 165, 250, 0.18);
-  background: rgba(96, 165, 250, 0.08);
-  color: #2563eb;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  background: rgba(96, 165, 250, 0.1);
+  color: #93c5fd;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .popupInfoButton:hover {
-  background: rgba(96, 165, 250, 0.16);
-  border-color: rgba(96, 165, 250, 0.35);
-  color: #1d4ed8;
+  background: rgba(96, 165, 250, 0.18);
+  border-color: rgba(96, 165, 250, 0.38);
+  color: #dbeafe;
 }
 
 .popupInfoButton:focus-visible {
@@ -125,13 +134,34 @@
 .popup p {
   margin: var(--spacing-xs) 0;
   font-size: var(--font-size-sm);
-  color: var(--gray);
+  color: #e2e8f0;
   line-height: 1.5;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
 }
 
 .popup strong {
-  color: var(--dark);
+  color: #ffffff;
   font-weight: 600;
+}
+
+.popup :global(*) {
+  color: inherit;
+}
+
+.popup :global(h3),
+.popup :global(p),
+.popup :global(strong) {
+  color: inherit;
+}
+
+.popup :global(.leaflet-popup-content) {
+  color: #e2e8f0;
+}
+
+.popup :global(.leaflet-popup-content p),
+.popup :global(.leaflet-popup-content strong),
+.popup :global(.leaflet-popup-content h3) {
+  color: inherit;
 }
 
 /* Leaflet Map Customization */
@@ -141,25 +171,32 @@
 }
 
 :global(.leaflet-popup-content-wrapper) {
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.99), rgba(11, 19, 34, 0.99));
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
+  border: 1px solid #334155;
 }
 
 :global(.leaflet-popup-tip) {
-  background-color: white;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background-color: #0f172a;
+  border: 1px solid #334155;
+}
+
+:global(.leaflet-popup-content) {
+  margin: 12px 14px;
 }
 
 :global(.leaflet-popup-close-button) {
   font-size: 18px;
   font-weight: 700;
-  opacity: 0.6;
+  opacity: 0.7;
+  color: #94a3b8;
   transition: opacity 0.2s ease;
 }
 
 :global(.leaflet-popup-close-button:hover) {
   opacity: 1;
+  color: #e2e8f0;
 }
 
 /* Map Legend */
