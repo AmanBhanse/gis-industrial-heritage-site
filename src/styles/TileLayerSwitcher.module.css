@@ -5,6 +5,12 @@
   z-index: 1000;
 }
 
+.switcherInline {
+  position: static;
+  top: auto;
+  right: auto;
+}
+
 .switcherContainer {
   display: flex;
   gap: 12px;

@@ -1,6 +1,6 @@
 import styles from '../styles/TileLayerSwitcher.module.css'
 
-function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {} }) {
+function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inline = false }) {
   const groups = [
     {
       label: 'Current',
@@ -21,7 +21,7 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {} }) {
   ]
 
   return (
-    <div className={styles.switcher}>
+    <div className={`${styles.switcher} ${inline ? styles.switcherInline : ''}`}>
       <div className={styles.switcherContainer}>
         {groups.map((group) => (
           <div key={group.label} className={styles.group}>

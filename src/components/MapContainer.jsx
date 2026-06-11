@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Popup, Marker, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import styles from '../styles/MapContainer.module.css'
@@ -8,6 +8,16 @@ import PolygonLayer from './PolygonLayer'
 import RouteLayer from './RouteLayer'
 import MapLibreLayer from './MapLibreLayer'
 import { createCategoryIcon } from '../utils/markerIcons'
+
+function MapInstanceBridge({ onReady }) {
+  const map = useMap()
+
+  useEffect(() => {
+    onReady(map)
+  }, [map, onReady])
+
+  return null
+}
 
 // Fix leaflet default icons
 delete L.Icon.Default.prototype._getIconUrl
@@ -30,6 +40,7 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
   const DEFAULT_ZOOM = 12
   const [activeLayer, setActiveLayer] = useState('osm')
   const [ohmYear, setOhmYear] = useState(1800)
+  const [mapInstance, setMapInstance] = useState(null)
 
   // Create an active/highlighted marker icon
   const createActiveMarkerIcon = (category) => {
@@ -48,9 +59,12 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
       <MapContainer
         center={KAISERSLAUTERN_CENTER}
         zoom={DEFAULT_ZOOM}
+        zoomControl={false}
         scrollWheelZoom={true}
         className={styles.map}
       >
+        <MapInstanceBridge onReady={setMapInstance} />
+
         {/* Conditional Tile Layer */}
         {activeLayer === 'osm' && (
           <TileLayer
@@ -131,8 +145,35 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
         ))}
       </MapContainer>
 
-      {/* Tile Layer Switcher */}
-      <TileLayerSwitcher activeLayer={activeLayer} onLayerChange={setActiveLayer} />
+      {/* Top-right map controls */}
+      <div className={styles.topControls}>
+        <TileLayerSwitcher
+          activeLayer={activeLayer}
+          onLayerChange={setActiveLayer}
+          inline={true}
+        />
+
+        <div className={styles.zoomPanel} aria-label="Map zoom controls">
+          <button
+            type="button"
+            className={styles.zoomButton}
+            onClick={() => mapInstance?.zoomIn()}
+            title="Zoom in"
+            aria-label="Zoom in"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            className={styles.zoomButton}
+            onClick={() => mapInstance?.zoomOut()}
+            title="Zoom out"
+            aria-label="Zoom out"
+          >
+            -
+          </button>
+        </div>
+      </div>
 
       {/* OHM Year Slider — shown only when OHM layer is active */}
       {activeLayer === 'ohm' && (
