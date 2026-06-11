@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Popup, Marker, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, WMSTileLayer, Popup, Marker, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import styles from '../styles/MapContainer.module.css'
@@ -104,6 +104,17 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
             url="https://mapwarper.net/maps/tile/107689/{z}/{x}/{y}.png"
             maxZoom={18}
             opacity={0.85}
+          />
+        )}
+
+        {activeLayer === 'basemapde' && (
+          <WMSTileLayer
+            url="https://sgx.geodatenzentrum.de/wms_basemapde"
+            layers="de_basemapde_web_raster_farbe"
+            format="image/png"
+            version="1.3.0"
+            transparent={false}
+            attribution='&copy; <a href="https://basemap.de/">basemap.de</a> / BKG 2026, &copy; GeoBasis-DE / BKG CC BY 4.0'
           />
         )}
 
