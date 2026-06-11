@@ -83,10 +83,8 @@ function App() {
 
   const headerContent = (
     <div className="header-inner">
-      <span className="header-icon">🏭</span>
       <div className="header-text">
-        <span className="header-title">Industrial Heritage Map</span>
-        <span className="header-subtitle">Kaiserslautern</span>
+        <span className="header-title">Map of Kaiserslautern</span>
       </div>
     </div>
   )
