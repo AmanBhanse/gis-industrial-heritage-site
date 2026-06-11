@@ -446,9 +446,7 @@ function SiteDetailDialog({ site, onClose }) {
         <div className="px-8 pt-7 pb-5" style={{ borderBottom: `1px solid #273245` }}>
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] mb-2" style={{ color }}>
-                {categoryLabel}
-              </p>
+
               <h2 className="text-[1.85rem] font-extrabold leading-tight" style={{ color: '#f8fafc' }}>{site.name}</h2>
             </div>
             <button
