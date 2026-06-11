@@ -22,30 +22,32 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
   ]
 
   const wrapperClasses = inline
-    ? 'static'
+    ? 'flex-1 min-w-0'
     : 'absolute right-[var(--spacing-md)] top-[var(--spacing-md)] z-[1000]'
 
   return (
     <TooltipProvider delayDuration={300}>
       <div className={wrapperClasses}>
-        <div className="inline-flex gap-2 rounded-lg border border-white/10 bg-gray-900/90 p-1.5 shadow-lg backdrop-blur-sm">
+        <div className="flex h-full w-full gap-1 rounded-lg border border-white/10 bg-gray-900/90 p-1.5 shadow-lg backdrop-blur-sm">
           {groups.map((group, index) => (
             <div
               key={group.label}
-              className={`flex flex-col gap-1 ${index > 0 ? 'border-l border-white/10 pl-2' : ''}`}
+              className={`flex min-w-0 flex-1 flex-col gap-1 ${
+                index > 0 ? 'border-l border-white/10 pl-1.5' : ''
+              }`}
             >
               <span className="text-center text-[9px] font-semibold uppercase tracking-wider text-blue-400">
                 {group.label}
               </span>
-              <div className="flex gap-1">
+              <div className="flex flex-wrap gap-0.5">
                 {group.layers.map((layer) => (
                   <Tooltip key={layer.id}>
                     <TooltipTrigger asChild>
                       <button
-                        className={`whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium transition-colors ${
+                        className={`shrink-0 whitespace-nowrap rounded px-1 py-px text-[10px] font-medium leading-none transition-colors ${
                           activeLayer === layer.id
                             ? 'bg-blue-600 text-white'
-                            : 'text-white/60 hover:bg-white/10 hover:text-white'
+                            : 'text-white/55 hover:bg-white/10 hover:text-white'
                         }`}
                         onClick={() => onLayerChange(layer.id)}
                         aria-label={`Switch to ${layer.label} view`}

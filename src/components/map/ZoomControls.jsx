@@ -1,7 +1,7 @@
 function ZoomControls({ onZoomIn, onZoomOut }) {
   return (
     <div
-      className="flex flex-col gap-1.5 rounded-lg border border-white/10 bg-gray-900/90 px-2 py-1.5 shadow-lg backdrop-blur-sm"
+      className="flex shrink-0 flex-col gap-1.5 rounded-lg border border-white/10 bg-gray-900/90 px-2 py-1.5 shadow-lg backdrop-blur-sm"
       aria-label="Map zoom controls"
     >
       <button

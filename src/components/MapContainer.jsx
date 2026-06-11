@@ -108,7 +108,7 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
       </MapContainer>
 
       {/* Top-right map controls */}
-      <div className="absolute top-[var(--spacing-md)] right-[var(--spacing-md)] z-[1000] flex items-stretch gap-3">
+      <div className="absolute top-[var(--spacing-md)] right-[var(--spacing-md)] z-[1000] flex w-[50vw] items-stretch gap-2">
         <TileLayerSwitcher
           activeLayer={activeLayer}
           onLayerChange={setActiveLayer}
