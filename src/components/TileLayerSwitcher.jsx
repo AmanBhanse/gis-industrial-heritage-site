@@ -6,8 +6,8 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
     {
       label: 'Current',
       layers: [
-        { id: 'osm',       label: 'Street',      provider: 'OpenStreetMap — community-maintained world map (ODbL)' },
         { id: 'basemapde', label: 'DE Official',  provider: 'basemap.de Web Raster — official German government geodata, provided by BKG / ZSGT (CC BY 4.0)' },
+        { id: 'osm',       label: 'Street',      provider: 'OpenStreetMap — community-maintained world map (ODbL)' },
         { id: 'satellite', label: 'Aerial',       provider: 'Esri World Imagery — satellite & aerial photography' },
         { id: 'historical', label: 'Terrain',     provider: 'OpenTopoMap — topographic map derived from OpenStreetMap & SRTM elevation data (CC BY-SA)' },
       ],
@@ -17,7 +17,7 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
       layers: [
         { id: 'medieval',    label: 'Pfalz 1789',    provider: 'MapWarper #52395 — Herrschaftsgebiete der Pfalz, 1789' },
         { id: 'military1814', label: 'Military 1814', provider: 'MapWarper #107689 — Topographisch-militairische Charte (Weiland, 1814)' },
-        { id: 'ohm',         label: 'OHM',            provider: 'OpenHistoricalMap — community-built historical vector map, filterable by year' },
+        { id: 'ohm',         label: 'Time Map',       provider: 'OpenHistoricalMap \u2014 community-built historical vector map, filterable by year' },
       ],
     },
   ]

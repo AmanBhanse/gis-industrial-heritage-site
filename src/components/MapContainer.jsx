@@ -37,8 +37,8 @@ L.Icon.Default.mergeOptions({
  */
 function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false }) {
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
-  const DEFAULT_ZOOM = 12
-  const [activeLayer, setActiveLayer] = useState('osm')
+  const DEFAULT_ZOOM = 13
+  const [activeLayer, setActiveLayer] = useState('basemapde')
   const [ohmYear, setOhmYear] = useState(1800)
   const [mapInstance, setMapInstance] = useState(null)
 
