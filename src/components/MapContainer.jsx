@@ -43,6 +43,7 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
   const [activeLayer, setActiveLayer] = useState('basemapde')
   const [ohmYear, setOhmYear] = useState(2025)
   const [mapInstance, setMapInstance] = useState(null)
+  const [legendOpen, setLegendOpen] = useState(false)
   const markerRefs = useRef({})
 
   // Register flyTo callback with parent
@@ -285,33 +286,42 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
       {/* Map Legend */}
       <div className={styles.legend}>
+        <button
+          onClick={() => setLegendOpen((o) => !o)}
+          className={styles.legendToggle}
+          aria-label={legendOpen ? 'Collapse legend' : 'Expand legend'}
+        >
+          <span>☰</span>
+          <span>{legendOpen ? 'Hide legend' : 'Legend'}</span>
+        </button>
+        {legendOpen && <>
         <div className={styles.legendTitle}>Heritage Sites</div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#8e44ad', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#8e44ad', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M7 7V3M17 7V3M2 11h20"/><rect x="4" y="13" width="3" height="5"/><rect x="10" y="13" width="3" height="5"/><rect x="16" y="13" width="3" height="5"/>
           </svg>
           Factory
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#e67e22', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#e67e22', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <path d="M17.2 9.9l-5.8 5.8"/><path d="M18.5 4a2.12 2.12 0 0 1 3 3L13 16.5"/><path d="M9.5 4a2.12 2.12 0 0 0-3 3l8.5 8.5"/><path d="M3 3v8a2 2 0 0 0 2 2h8"/>
           </svg>
           Mine
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#3498db', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#3498db', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
           </svg>
           Warehouse
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#16a085', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#16a085', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/><path d="M2 9h20M6 6V4M18 6V4"/>
           </svg>
           Railway
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#27ae60', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#27ae60', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
           Settlement
@@ -321,35 +331,36 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
         
         <div className={styles.legendTitle}>Public Art</div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#a78bfa', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#a78bfa', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <circle cx="12" cy="5" r="2"/><path d="M12 7v4M9 9h6M9 13h6M10 17h4M8 21h8"/>
           </svg>
           Skulptur
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#c084fc', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#c084fc', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/><path d="M9 12h0"/><path d="M15 12h0"/>
           </svg>
           Denkmal
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#06b6d4', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#06b6d4', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><circle cx="6.5" cy="13.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/>
           </svg>
           Brunnen
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#f97316', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#f97316', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
           </svg>
           Relief
         </div>
         <div className={styles.legendItem}>
-          <svg width="24" height="24" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#ec4899', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 24, minHeight: 24 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" style={{ fill: 'none', stroke: '#ec4899', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', minWidth: 16, minHeight: 16 }}>
             <path d="M12 3l1.9 5.8h6.1l-4.9 3.6 1.9 5.8-4.9-3.6-4.9 3.6 1.9-5.8-4.9-3.6h6.1z"/><path d="M3 21l2-5M20 7l2-5M6 12l-2-5M18 20l2-5"/>
           </svg>
           Plastik
         </div>
+        </>}
       </div>
     </div>
   )

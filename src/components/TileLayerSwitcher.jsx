@@ -28,36 +28,33 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
   return (
     <TooltipProvider delayDuration={300}>
       <div className={wrapperClasses}>
-        <div className="inline-flex gap-1 rounded-lg border border-[rgba(52,152,219,0.15)] bg-[rgba(17,24,39,0.92)] p-1 shadow-[0_6px_18px_rgba(0,0,0,0.28)] backdrop-blur-[12px]">
+        <div className="inline-flex gap-2 rounded-lg border border-white/10 bg-gray-900/90 p-1.5 shadow-lg backdrop-blur-sm">
           {groups.map((group, index) => (
             <div
               key={group.label}
-              className={`flex flex-col gap-0.5 ${index > 0 ? 'border-l border-[rgba(52,152,219,0.2)] pl-1.5' : ''}`}
+              className={`flex flex-col gap-1 ${index > 0 ? 'border-l border-white/10 pl-2' : ''}`}
             >
-              <div className="aman flex w-full items-center justify-center rounded bg-[rgba(52,152,219,0.1)] p-4 text-center text-xs font-bold uppercase tracking-[0.08em] text-[#60a5fa]">
+              <span className="text-center text-[9px] font-semibold uppercase tracking-wider text-blue-400">
                 {group.label}
-              </div>
-              <div className="flex gap-px">
+              </span>
+              <div className="flex gap-1">
                 {group.layers.map((layer) => (
                   <Tooltip key={layer.id}>
                     <TooltipTrigger asChild>
                       <button
-                        className={`flex min-h-[22px] items-center justify-center whitespace-nowrap rounded border border-[rgba(96,165,250,0.2)] px-1.5 py-0.5 text-center text-[8px] leading-tight font-medium transition-all duration-200 ${
+                        className={`whitespace-nowrap rounded px-2 py-0.5 text-xs font-medium transition-colors ${
                           activeLayer === layer.id
-                            ? 'border-[#60a5fa] bg-[rgba(96,165,250,0.18)] font-semibold text-[#60a5fa] hover:bg-[rgba(96,165,250,0.25)]'
-                            : 'bg-transparent text-[rgba(255,255,255,0.6)] hover:border-[rgba(96,165,250,0.4)] hover:bg-[rgba(96,165,250,0.1)] hover:text-[rgba(255,255,255,0.85)]'
+                            ? 'bg-blue-600 text-white'
+                            : 'text-white/60 hover:bg-white/10 hover:text-white'
                         }`}
                         onClick={() => onLayerChange(layer.id)}
                         aria-label={`Switch to ${layer.label} view`}
                         aria-pressed={activeLayer === layer.id}
                       >
-                        <span>{layer.label}</span>
+                        {layer.label}
                       </button>
                     </TooltipTrigger>
-                    <TooltipContent
-                      side="bottom"
-                      className="max-w-[220px] rounded-lg border border-[#283448] bg-[#1b2336] px-3 py-[0.4rem] text-center text-xs text-[#e2e8f0]"
-                    >
+                    <TooltipContent side="bottom">
                       {layer.provider}
                     </TooltipContent>
                   </Tooltip>
