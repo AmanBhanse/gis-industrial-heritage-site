@@ -47,6 +47,9 @@ function App() {
    */
   const handleMarkerClick = (site) => {
     setSelectedSite(site)
+    if (site?.lat && site?.lng) {
+      flyToRef.current?.({ lat: site.lat, lng: site.lng })
+    }
   }
 
   /**
@@ -113,6 +116,7 @@ function App() {
         showSculptures={showSculptures}
         sculptureCategories={sculptureCategories}
         sculptures={sculptures}
+        onSelectSculpture={handleSelectSculpture}
         onFlyTo={(fn) => { flyToRef.current = fn }}
       />
     </Layout>

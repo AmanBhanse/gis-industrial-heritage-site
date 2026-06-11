@@ -23,14 +23,21 @@ const sculptureIcon = makeSculptureIcon()
 /**
  * Renders public art / sculpture markers from the Kaiserslautern WFS.
  */
-function SkulpturenLayer({ sculptures = [], activeCategories = [] }) {
+function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculpture = () => {} }) {
   const visible =
     activeCategories.length === 0
       ? sculptures
       : sculptures.filter((s) => activeCategories.includes(s.category))
 
   return visible.map((s) => (
-    <Marker key={s.id} position={[s.lat, s.lng]} icon={sculptureIcon}>
+    <Marker
+      key={s.id}
+      position={[s.lat, s.lng]}
+      icon={sculptureIcon}
+      eventHandlers={{
+        click: () => onSelectSculpture(s),
+      }}
+    >
       <Popup>
         <div style={{ minWidth: 180, fontSize: 13 }}>
           <strong style={{ fontSize: 14 }}>{s.name || '(unnamed)'}</strong>

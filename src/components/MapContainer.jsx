@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MapContainer, TileLayer, WMSTileLayer, Popup, Marker, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -36,12 +36,13 @@ L.Icon.Default.mergeOptions({
  * @param {Function} onMarkerClick - Callback when a marker is clicked
  * @returns {JSX.Element}
  */
-function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false, showSculptures = false, sculptureCategories = [], sculptures = [], onFlyTo = () => {} }) {
+function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false, showSculptures = false, sculptureCategories = [], sculptures = [], onFlyTo = () => {}, onSelectSculpture = () => {} }) {
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 13
   const [activeLayer, setActiveLayer] = useState('basemapde')
   const [ohmYear, setOhmYear] = useState(2025)
   const [mapInstance, setMapInstance] = useState(null)
+  const markerRefs = useRef({})
 
   // Register flyTo callback with parent
   useEffect(() => {
@@ -50,6 +51,19 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
       mapInstance.flyTo([lat, lng], Math.max(mapInstance.getZoom(), 15), { duration: 1 })
     })
   }, [mapInstance, onFlyTo])
+
+  // Keep exactly one popup open: the one belonging to the current selected marker.
+  useEffect(() => {
+    if (!mapInstance) return
+
+    Object.values(markerRefs.current).forEach((marker) => {
+      marker?.closePopup?.()
+    })
+
+    if (selectedSite?.id) {
+      markerRefs.current[selectedSite.id]?.openPopup?.()
+    }
+  }, [mapInstance, selectedSite])
 
   // Create an active/highlighted marker icon
   const createActiveMarkerIcon = (category) => {
@@ -142,7 +156,11 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
         {/* Public Art / Sculptures overlay */}
         {showSculptures && (
-          <SkulpturenLayer sculptures={sculptures} activeCategories={sculptureCategories} />
+          <SkulpturenLayer
+            sculptures={sculptures}
+            activeCategories={sculptureCategories}
+            onSelectSculpture={onSelectSculpture}
+          />
         )}
 
         {/* Site Markers */}
@@ -151,6 +169,13 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
             key={site.id}
             position={[site.lat, site.lng]}
             icon={selectedSite?.id === site.id ? createActiveMarkerIcon(site.category) : createCategoryIcon(site.category)}
+            ref={(marker) => {
+              if (marker) {
+                markerRefs.current[site.id] = marker
+              } else {
+                delete markerRefs.current[site.id]
+              }
+            }}
             eventHandlers={{
               click: () => onMarkerClick(site),
             }}
