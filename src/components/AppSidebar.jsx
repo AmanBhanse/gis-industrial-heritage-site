@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { getCategoryColor, getCategoryLabel } from '../utils/markerIcons'
 import { getFilterStats } from '../hooks/useFilteredSites'
-import { MapPin, Filter, Route, X, Search, ArrowLeft, Clock, Tag, Activity, Navigation, Info } from 'lucide-react'
+import { MapPin, Filter, Route, X, Search, Tag, Info } from 'lucide-react'
 
 const D = {
   bg:      '#131929',
@@ -22,7 +22,6 @@ function AppSidebar({
   onFilterChange = () => {},
   selectedSite = null,
   onSelectSite = () => {},
-  onCloseSiteDetails = () => {},
   showRoute = false,
   onRouteToggle = () => {},
   showSculptures = false,
@@ -81,11 +80,6 @@ function AppSidebar({
 
   const resetFilters = () => {
     onFilterChange({ categories: [], eras: [], statuses: [] })
-  }
-
-  // If a site is selected, show its details
-  if (selectedSite) {
-    return <SiteDetailPanel site={selectedSite} onClose={onCloseSiteDetails} />
   }
 
   return (
@@ -540,113 +534,6 @@ function SiteDetailDialog({ site, onClose }) {
           )}
         </div>
         </div>
-      </div>
-    </div>
-  )
-}
-
-/* ── Site detail panel ── */
-function SiteDetailPanel({ site, onClose }) {
-  const color = getCategoryColor(site.category)
-  const categoryLabel = getCategoryLabel(site.category)
-
-  const statusStyle = {
-    active:    { bg: '#05603a22', text: '#34d399', border: '#34d39933' },
-    converted: { bg: '#1d4ed822', text: '#60a5fa', border: '#60a5fa33' },
-    abandoned: { bg: '#92400e22', text: '#fbbf24', border: '#fbbf2433' },
-    museum:    { bg: '#6d28d922', text: '#c084fc', border: '#c084fc33' },
-  }[site.status] || { bg: '#1e253533', text: '#8892a4', border: '#2a334833' }
-
-  return (
-    <div className="flex flex-col h-full" style={{ background: D.bg, color: D.text }}>
-      {/* Hero */}
-      <div
-        className="px-6 pt-5 pb-6"
-        style={{
-          background: `linear-gradient(135deg, ${color}28 0%, ${D.surface} 100%)`,
-          borderBottom: `2px solid ${color}`,
-        }}
-      >
-        <button
-          onClick={onClose}
-          className="flex items-center gap-1.5 text-xs mb-3 transition-opacity hover:opacity-100 opacity-60"
-          style={{ color: D.muted }}
-        >
-          <ArrowLeft className="size-4" />
-          All sites
-        </button>
-        <h2 className="text-lg font-bold leading-tight" style={{ color: D.text }}>{site.name}</h2>
-        <div className="flex flex-wrap gap-2.5 mt-4">
-          <span
-            className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-2 rounded-full border-2"
-            style={{ backgroundColor: color + '15', color, borderColor: color }}
-          >
-            <Tag className="size-3.5" />{categoryLabel}
-          </span>
-          <span
-            className="inline-flex items-center text-xs font-semibold px-3.5 py-2 rounded-full border-2 capitalize"
-            style={{ background: statusStyle.bg, color: statusStyle.text, borderColor: statusStyle.text }}
-          >
-            {site.status}
-          </span>
-        </div>
-      </div>
-
-      {/* Scrollable body */}
-      <div className="flex-1 overflow-y-auto">
-        {/* Stats row */}
-        <div className="grid grid-cols-3 px-6" style={{ borderBottom: `1px solid ${D.border}` }}>
-          {[
-            { value: site.yearBuilt,       label: 'Built' },
-            { value: site.era,             label: 'Era' },
-            { value: site.lat.toFixed(3),  label: site.lng.toFixed(3) },
-          ].map(({ value, label }, i) => (
-            <div
-              key={i}
-              className="flex flex-col py-5 px-3 gap-1.5 flex-1 text-center"
-              style={{ borderRight: i < 2 ? `1px solid ${D.border}` : 'none' }}
-            >
-              <span className="text-xs uppercase tracking-wider font-semibold" style={{ color: D.muted }}>{label}</span>
-              <span className="text-base font-bold" style={{ color: D.text }}>{value}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Images */}
-        {site.images?.length > 0 && (
-          <div className="flex gap-3 py-5 px-6 overflow-x-auto" style={{ borderBottom: `1px solid ${D.border}` }}>
-            {site.images.map((img, i) => (
-              <img
-                key={i} src={img} alt={`${site.name} ${i + 1}`}
-                className="h-28 w-44 shrink-0 object-cover rounded-xl"
-                style={{ border: `1px solid ${D.border}` }}
-                onError={(e) => { e.target.style.display = 'none' }}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Description */}
-        {site.description && (
-          <div className="py-5 px-6" style={{ borderBottom: `1px solid ${D.border}` }}>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: D.muted }}>History</p>
-            <p className="text-sm leading-relaxed" style={{ color: '#c8d0de' }}>{site.description}</p>
-          </div>
-        )}
-
-        {/* Visitor info */}
-        {site.additionalInfo && (
-          <div className="px-6 py-5">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: D.muted }}>Visitor Info</p>
-            <div
-              className="flex items-start gap-3 rounded-lg p-4"
-              style={{ background: '#92400e1a', border: '1px solid #92400e55' }}
-            >
-              <span className="text-amber-400 text-lg mt-0.5 shrink-0">ℹ</span>
-              <p className="text-sm leading-relaxed" style={{ color: '#fcd34d' }}>{site.additionalInfo}</p>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )

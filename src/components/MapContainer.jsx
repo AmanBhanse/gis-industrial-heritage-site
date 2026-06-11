@@ -40,7 +40,7 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 13
   const [activeLayer, setActiveLayer] = useState('basemapde')
-  const [ohmYear, setOhmYear] = useState(1800)
+  const [ohmYear, setOhmYear] = useState(2025)
   const [mapInstance, setMapInstance] = useState(null)
 
   // Register flyTo callback with parent

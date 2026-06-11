@@ -74,13 +74,6 @@ function App() {
     setFilters(newFilters)
   }
 
-  /**
-   * Handle closing site details panel
-   */
-  const handleCloseSiteDetails = () => {
-    setSelectedSite(null)
-  }
-
   const headerContent = (
     <div className="header-inner">
       <div className="header-text">
@@ -97,7 +90,6 @@ function App() {
       onFilterChange={handleFilterChange}
       selectedSite={selectedSite}
       onSelectSite={handleSelectSite}
-      onCloseSiteDetails={handleCloseSiteDetails}
       showRoute={showRoute}
       onRouteToggle={setShowRoute}
       showSculptures={showSculptures}

@@ -15,9 +15,9 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
     {
       label: 'Historical',
       layers: [
-        { id: 'medieval',    label: 'Pfalz 1789',    provider: 'MapWarper #52395 — Herrschaftsgebiete der Pfalz, 1789' },
+        { id: 'ohm',          label: 'Time Map',       provider: 'OpenHistoricalMap \u2014 community-built historical vector map, filterable by year' },
         { id: 'military1814', label: 'Military 1814', provider: 'MapWarper #107689 — Topographisch-militairische Charte (Weiland, 1814)' },
-        { id: 'ohm',         label: 'Time Map',       provider: 'OpenHistoricalMap \u2014 community-built historical vector map, filterable by year' },
+        { id: 'medieval',     label: 'Pfalz 1789',    provider: 'MapWarper #52395 — Herrschaftsgebiete der Pfalz, 1789' },
       ],
     },
   ]
