@@ -26,6 +26,7 @@ function parseGML(xmlText) {
       lng,
       name: get('name'),
       artist: get('kuenstler'),
+      photo: get('foto'),
       category: get('kategorie'),
       location: get('standort'),
       year: get('entstehung'),

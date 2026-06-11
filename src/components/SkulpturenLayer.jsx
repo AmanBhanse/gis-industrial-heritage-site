@@ -1,5 +1,6 @@
 import L from 'leaflet'
 import { Marker, Popup } from 'react-leaflet'
+import { Info } from 'lucide-react'
 
 const SCULPTURE_COLOR = '#a78bfa'
 
@@ -23,7 +24,7 @@ const sculptureIcon = makeSculptureIcon()
 /**
  * Renders public art / sculpture markers from the Kaiserslautern WFS.
  */
-function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculpture = () => {} }) {
+function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculpture = () => {}, onOpenSculptureDetails = () => {} }) {
   const visible =
     activeCategories.length === 0
       ? sculptures
@@ -40,7 +41,35 @@ function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculp
     >
       <Popup>
         <div style={{ minWidth: 180, fontSize: 13 }}>
-          <strong style={{ fontSize: 14 }}>{s.name || '(unnamed)'}</strong>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
+            <strong style={{ fontSize: 14, lineHeight: 1.2 }}>{s.name || '(unnamed)'}</strong>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                onOpenSculptureDetails(s)
+              }}
+              aria-label={`Open details for ${s.name || 'public art item'}`}
+              title="Open public art details"
+              style={{
+                width: 28,
+                height: 28,
+                flex: '0 0 auto',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 0,
+                borderRadius: 999,
+                border: '1px solid rgba(167, 139, 250, 0.18)',
+                background: 'rgba(167, 139, 250, 0.08)',
+                color: '#7c3aed',
+                cursor: 'pointer',
+              }}
+            >
+              <Info size={14} />
+            </button>
+          </div>
           {s.artist   && <p style={{ margin: '4px 0 0' }}>🎨 {s.artist}</p>}
           {s.year     && <p style={{ margin: '2px 0 0' }}>📅 {s.year}</p>}
           {s.location && <p style={{ margin: '2px 0 0' }}>📍 {s.location}</p>}

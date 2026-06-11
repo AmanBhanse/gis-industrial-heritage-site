@@ -15,6 +15,13 @@ const D = {
   input:   '#1a2540',
 }
 
+function getSculptureImageUrl(photo) {
+  if (!photo) return null
+  if (/^https?:\/\//i.test(photo)) return photo
+  const fileName = photo.replace(/^\/+/, '').split('/').pop()
+  return `https://geoportal.kaiserslautern.de/img/skulpturen/${fileName}`
+}
+
 function AppSidebar({
   sites = [],
   filteredSites = [],
@@ -22,6 +29,12 @@ function AppSidebar({
   onFilterChange = () => {},
   selectedSite = null,
   onSelectSite = () => {},
+  dialogSite = null,
+  onOpenSiteDetails = () => {},
+  onCloseSiteDetails = () => {},
+  dialogSculpture = null,
+  onOpenSculptureDetails = () => {},
+  onCloseSculptureDetails = () => {},
   showRoute = false,
   onRouteToggle = () => {},
   showSculptures = false,
@@ -34,7 +47,6 @@ function AppSidebar({
   const [searchTerm, setSearchTerm] = useState('')
   const [activeTab, setActiveTab] = useState('sites')
   const [selectedSculptureId, setSelectedSculptureId] = useState(null)
-  const [dialogSite, setDialogSite] = useState(null)
 
   const stats = getFilterStats(sites, filteredSites)
   const hasActiveFilters = Object.values(filters).some((arr) => arr?.length > 0)
@@ -180,7 +192,7 @@ function AppSidebar({
                           </div>
                         </button>
                         <button
-                          onClick={(e) => { e.stopPropagation(); setDialogSite(site) }}
+                          onClick={(e) => { e.stopPropagation(); onOpenSiteDetails(site) }}
                           className="shrink-0 p-1.5 rounded-md transition-all"
                           style={{ color: D.muted }}
                           onMouseEnter={(e) => { e.currentTarget.style.color = '#60a5fa'; e.currentTarget.style.background = '#60a5fa18' }}
@@ -207,12 +219,8 @@ function AppSidebar({
                   const isSelected = selectedSculptureId === s.id
                   return (
                     <li key={s.id} style={{ borderBottom: `1px solid ${D.border}` }}>
-                      <button
-                        onClick={() => {
-                          setSelectedSculptureId(s.id)
-                          onSelectSculpture(s)
-                        }}
-                        className="w-full text-left px-4 py-3 flex items-center gap-3 transition-all"
+                      <div
+                        className="flex items-center px-4 py-3 transition-all"
                         style={{
                           background: isSelected ? '#7c3aed18' : 'transparent',
                           borderLeft: isSelected ? '3px solid #a78bfa' : '3px solid transparent',
@@ -221,17 +229,37 @@ function AppSidebar({
                         onMouseEnter={(e) => { if (!isSelected) e.currentTarget.style.background = D.hover }}
                         onMouseLeave={(e) => { if (!isSelected) e.currentTarget.style.background = 'transparent' }}
                       >
-                        <span className="size-2.5 rounded-full shrink-0" style={{ backgroundColor: '#a78bfa', boxShadow: isSelected ? '0 0 0 3px #a78bfa33' : 'none' }} />
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-semibold truncate" style={{ color: isSelected ? '#a78bfa' : D.text }}>{s.name || '(unnamed)'}</p>
-                          <p className="text-xs mt-0.5 truncate" style={{ color: D.muted }}>
-                            {s.category || 'Skulptur'}
-                            {s.artist ? ` · ${s.artist}` : ''}
-                            {s.year ? ` · ${s.year}` : ''}
-                          </p>
-                        </div>
-                        {isSelected && <span className="size-1.5 rounded-full shrink-0" style={{ backgroundColor: '#a78bfa' }} />}
-                      </button>
+                        <button
+                          onClick={() => {
+                            setSelectedSculptureId(s.id)
+                            onSelectSculpture(s)
+                          }}
+                          className="flex-1 text-left flex items-center gap-3 min-w-0"
+                          style={{ color: D.text }}
+                        >
+                          <span className="size-2.5 rounded-full shrink-0" style={{ backgroundColor: '#a78bfa', boxShadow: isSelected ? '0 0 0 3px #a78bfa33' : 'none' }} />
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold truncate" style={{ color: isSelected ? '#a78bfa' : D.text }}>{s.name || '(unnamed)'}</p>
+                            <p className="text-xs mt-0.5 truncate" style={{ color: D.muted }}>
+                              {s.category || 'Skulptur'}
+                              {s.artist ? ` · ${s.artist}` : ''}
+                              {s.year ? ` · ${s.year}` : ''}
+                            </p>
+                          </div>
+                        </button>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onOpenSculptureDetails(s) }}
+                          className="shrink-0 p-1.5 rounded-md transition-all"
+                          style={{ color: D.muted }}
+                          onMouseEnter={(e) => { e.currentTarget.style.color = '#a78bfa'; e.currentTarget.style.background = '#a78bfa18' }}
+                          onMouseLeave={(e) => { e.currentTarget.style.color = D.muted; e.currentTarget.style.background = 'transparent' }}
+                          title="Public art info"
+                          aria-label={`Info for ${s.name || 'public art item'}`}
+                        >
+                          <Info className="size-3.5" />
+                        </button>
+                        {isSelected && <span className="size-1.5 rounded-full shrink-0 ml-2" style={{ backgroundColor: '#a78bfa' }} />}
+                      </div>
                     </li>
                   )
                 })}
@@ -351,7 +379,12 @@ function AppSidebar({
 
     {/* Site detail dialog portal */}
     {dialogSite && createPortal(
-      <SiteDetailDialog site={dialogSite} onClose={() => setDialogSite(null)} />,
+      <SiteDetailDialog site={dialogSite} onClose={onCloseSiteDetails} />,
+      document.body
+    )}
+
+    {dialogSculpture && createPortal(
+      <SculptureDetailDialog sculpture={dialogSculpture} onClose={onCloseSculptureDetails} />,
       document.body
     )}
   </>
@@ -533,6 +566,97 @@ function SiteDetailDialog({ site, onClose }) {
             </div>
           )}
         </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ── Sculpture detail dialog ── */
+function SculptureDetailDialog({ sculpture, onClose }) {
+  const imageUrl = getSculptureImageUrl(sculpture.photo)
+
+  return (
+    <div
+      className="fixed inset-0 flex items-end sm:items-center justify-center p-4"
+      style={{ zIndex: 9999, background: 'rgba(5,10,20,0.6)', backdropFilter: 'blur(5px)' }}
+      onClick={onClose}
+    >
+      <div
+        className="relative flex flex-col w-full rounded-2xl p-4"
+        style={{
+          background: '#0b1322',
+          border: '1px solid #3b4b63',
+          boxShadow: '0 24px 70px rgba(0,0,0,0.55)',
+          maxWidth: '520px',
+          maxHeight: '88vh',
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="rounded-xl overflow-hidden" style={{ background: '#0f172a', border: '1px solid #243248' }}>
+          <div className="px-8 pt-7 pb-5" style={{ borderBottom: '1px solid #273245' }}>
+            <div className="flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <h2 className="text-[1.85rem] font-extrabold leading-tight" style={{ color: '#f8fafc' }}>
+                  {sculpture.name || '(unnamed)'}
+                </h2>
+                <p className="mt-2 text-sm" style={{ color: '#8ea0bc' }}>Public art details</p>
+              </div>
+              <button
+                onClick={onClose}
+                className="shrink-0 mt-0.5 p-2 rounded-xl transition-all"
+                style={{ color: D.muted, background: '#162033' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = D.text; e.currentTarget.style.background = D.hover }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = D.muted; e.currentTarget.style.background = '#162033' }}
+                aria-label="Close"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
+          </div>
+
+          <div className="flex-1 overflow-y-auto px-8 py-6" style={{ color: D.text }}>
+            <div className="grid grid-cols-3 gap-4 pb-5" style={{ borderBottom: '1px solid #273245' }}>
+              {[
+                { label: 'Artist', value: sculpture.artist || '—' },
+                { label: 'Year', value: sculpture.year || '—' },
+                { label: 'Coords', value: sculpture.lat ? `${sculpture.lat.toFixed(3)}, ${sculpture.lng.toFixed(3)}` : '—' },
+              ].map(({ label, value }) => (
+                <div key={label} className="text-center">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider mb-1" style={{ color: '#8ea0bc' }}>{label}</p>
+                  <p className="text-lg font-bold leading-tight" style={{ color: '#f1f5f9' }}>{value}</p>
+                </div>
+              ))}
+            </div>
+
+            {imageUrl && (
+              <div className="pt-5 pb-5" style={{ borderBottom: '1px solid #273245' }}>
+                <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: D.muted }}>
+                  Image
+                </p>
+                <img
+                  src={imageUrl}
+                  alt={sculpture.name || 'Public art image'}
+                  className="w-full rounded-xl object-cover"
+                  style={{ maxHeight: 280, border: '1px solid #334155' }}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                />
+              </div>
+            )}
+
+            <div className="pt-5 pb-5" style={{ borderBottom: '1px solid #273245' }}>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: D.muted }}>Location</p>
+              <p className="text-[1.06rem] leading-8" style={{ color: '#d3deee' }}>{sculpture.location || '—'}</p>
+            </div>
+
+            <div className="pt-5 flex items-start gap-3">
+              <Info className="size-4 shrink-0 mt-0.5" style={{ color: '#a78bfa' }} />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: '#8ea0bc' }}>Category</p>
+                <p className="text-sm leading-relaxed" style={{ color: '#d3deee' }}>{sculpture.category || '—'}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

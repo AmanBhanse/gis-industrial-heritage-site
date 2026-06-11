@@ -9,6 +9,7 @@ import RouteLayer from './RouteLayer'
 import MapLibreLayer from './MapLibreLayer'
 import SkulpturenLayer from './SkulpturenLayer'
 import { createCategoryIcon } from '../utils/markerIcons'
+import { Info } from 'lucide-react'
 
 function MapInstanceBridge({ onReady }) {
   const map = useMap()
@@ -36,7 +37,7 @@ L.Icon.Default.mergeOptions({
  * @param {Function} onMarkerClick - Callback when a marker is clicked
  * @returns {JSX.Element}
  */
-function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false, showSculptures = false, sculptureCategories = [], sculptures = [], onFlyTo = () => {}, onSelectSculpture = () => {} }) {
+function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false, showSculptures = false, sculptureCategories = [], sculptures = [], onFlyTo = () => {}, onSelectSculpture = () => {}, onOpenSiteDetails = () => {}, onOpenSculptureDetails = () => {} }) {
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 13
   const [activeLayer, setActiveLayer] = useState('basemapde')
@@ -160,6 +161,7 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
             sculptures={sculptures}
             activeCategories={sculptureCategories}
             onSelectSculpture={onSelectSculpture}
+            onOpenSculptureDetails={onOpenSculptureDetails}
           />
         )}
 
@@ -182,7 +184,22 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
           >
             <Popup>
               <div className={styles.popup}>
-                <h3>{site.name}</h3>
+                <div className={styles.popupHeader}>
+                  <h3>{site.name}</h3>
+                  <button
+                    type="button"
+                    className={styles.popupInfoButton}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      onOpenSiteDetails(site)
+                    }}
+                    aria-label={`Open details for ${site.name}`}
+                    title="Open site details"
+                  >
+                    <Info className={styles.popupInfoIcon} />
+                  </button>
+                </div>
                 <p>
                   <strong>Category:</strong> {site.category}
                 </p>

@@ -26,6 +26,8 @@ import heritageData from './data/heritage-sites.json'
 function App() {
   // State management
   const [selectedSite, setSelectedSite] = useState(null)
+  const [dialogSite, setDialogSite] = useState(null)
+  const [dialogSculpture, setDialogSculpture] = useState(null)
   const [showRoute, setShowRoute] = useState(false)
   const [showSculptures, setShowSculptures] = useState(true)
   const [sculptureCategories, setSculptureCategories] = useState([])
@@ -63,6 +65,22 @@ function App() {
     }
   }
 
+  const handleOpenSiteDetails = (site) => {
+    setDialogSite(site)
+  }
+
+  const handleCloseSiteDetails = () => {
+    setDialogSite(null)
+  }
+
+  const handleOpenSculptureDetails = (sculpture) => {
+    setDialogSculpture(sculpture)
+  }
+
+  const handleCloseSculptureDetails = () => {
+    setDialogSculpture(null)
+  }
+
   const handleSelectSculpture = (sculpture) => {
     if (sculpture?.lat && sculpture?.lng) {
       flyToRef.current?.({ lat: sculpture.lat, lng: sculpture.lng })
@@ -93,6 +111,12 @@ function App() {
       onFilterChange={handleFilterChange}
       selectedSite={selectedSite}
       onSelectSite={handleSelectSite}
+      dialogSite={dialogSite}
+      onOpenSiteDetails={handleOpenSiteDetails}
+      onCloseSiteDetails={handleCloseSiteDetails}
+      dialogSculpture={dialogSculpture}
+      onOpenSculptureDetails={handleOpenSculptureDetails}
+      onCloseSculptureDetails={handleCloseSculptureDetails}
       showRoute={showRoute}
       onRouteToggle={setShowRoute}
       showSculptures={showSculptures}
@@ -117,6 +141,8 @@ function App() {
         sculptureCategories={sculptureCategories}
         sculptures={sculptures}
         onSelectSculpture={handleSelectSculpture}
+        onOpenSiteDetails={handleOpenSiteDetails}
+        onOpenSculptureDetails={handleOpenSculptureDetails}
         onFlyTo={(fn) => { flyToRef.current = fn }}
       />
     </Layout>
