@@ -22,54 +22,64 @@ function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculp
       }}
     >
       <Popup>
-        <div style={{ minWidth: 180, fontSize: 13, color: '#e5eefb' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
-            <strong style={{ fontSize: 14, lineHeight: 1.2, color: '#ffffff', textShadow: '0 1px 2px rgba(0,0,0,0.45)' }}>{s.name || '(unnamed)'}</strong>
+        <div className="w-60 p-4 pr-8">
+          {/* Title */}
+          <h3 className="mb-3 text-sm font-semibold leading-snug text-white">
+            {s.name || '(unnamed)'}
+          </h3>
+          {/* Meta */}
+          <div className="space-y-1.5 text-xs text-slate-300">
+            {s.artist   && (
+              <div className="flex items-center gap-2">
+                <span className="text-base leading-none">🎨</span>
+                <span>{s.artist}</span>
+              </div>
+            )}
+            {s.year     && (
+              <div className="flex items-center gap-2">
+                <span className="text-base leading-none">📅</span>
+                <span>{s.year}</span>
+              </div>
+            )}
+            {s.location && (
+              <div className="flex items-center gap-2">
+                <span className="text-base leading-none">📍</span>
+                <span>{s.location}</span>
+              </div>
+            )}
+          </div>
+          {/* Category badge */}
+          {s.category && (
+            <div className="mt-3">
+              <span
+                className="inline-block rounded px-2 py-0.5 text-[11px] font-semibold"
+                style={{
+                  background: `${getSculptureColor(s.category)}22`,
+                  color: getSculptureColor(s.category),
+                  border: `1px solid ${getSculptureColor(s.category)}75`,
+                }}
+              >
+                {s.category}
+              </span>
+            </div>
+          )}
+          {/* Source + details button row */}
+          <div className="mt-3 flex items-center justify-between gap-2">
+            <span className="text-[11px] text-slate-500">Geoportal Kaiserslautern</span>
             <button
               type="button"
+              className="flex cursor-pointer items-center gap-1 rounded-md border border-violet-500/30 bg-violet-500/10 px-2 py-1 text-[11px] font-medium text-violet-300 transition-colors hover:bg-violet-500/20 hover:text-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-400"
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
                 onOpenSculptureDetails(s)
               }}
               aria-label={`Open details for ${s.name || 'public art item'}`}
-              title="Open public art details"
-              style={{
-                width: 28,
-                height: 28,
-                flex: '0 0 auto',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 0,
-                borderRadius: 999,
-                border: '1px solid rgba(167, 139, 250, 0.2)',
-                background: 'rgba(167, 139, 250, 0.1)',
-                color: '#93c5fd',
-                cursor: 'pointer',
-              }}
             >
-              <Info size={14} />
+              <Info size={11} />
+              Details
             </button>
           </div>
-          {s.artist   && <p style={{ margin: '4px 0 0', color: '#e5eefb', textShadow: '0 1px 1px rgba(0,0,0,0.28)' }}>🎨 {s.artist}</p>}
-          {s.year     && <p style={{ margin: '2px 0 0', color: '#e5eefb', textShadow: '0 1px 1px rgba(0,0,0,0.28)' }}>📅 {s.year}</p>}
-          {s.location && <p style={{ margin: '2px 0 0', color: '#e5eefb', textShadow: '0 1px 1px rgba(0,0,0,0.28)' }}>📍 {s.location}</p>}
-          {s.category && (
-            <p style={{ margin: '4px 0 0' }}>
-              <span style={{
-                display: 'inline-block',
-                background: getSculptureColor(s.category) + '22',
-                color: getSculptureColor(s.category),
-                border: `1px solid ${getSculptureColor(s.category)}75`,
-                borderRadius: 4,
-                padding: '1px 6px',
-                fontSize: 11,
-                fontWeight: 600,
-              }}>{s.category}</span>
-            </p>
-          )}
-          <p style={{ margin: '4px 0 0', fontSize: 11, color: '#a8b6c9', textShadow: '0 1px 1px rgba(0,0,0,0.2)' }}>Quelle: Geoportal Kaiserslautern</p>
         </div>
       </Popup>
     </Marker>
