@@ -5,17 +5,17 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {} }) {
     {
       label: 'Current',
       layers: [
-        { id: 'osm', label: 'Street', icon: '🗺️' },
-        { id: 'satellite', label: 'Aerial', icon: '🛰️' },
-        { id: 'historical', label: 'Terrain', icon: '🏔️' },
+        { id: 'osm', label: 'Street' },
+        { id: 'satellite', label: 'Aerial' },
+        { id: 'historical', label: 'Terrain' },
       ],
     },
     {
       label: 'Historical',
       layers: [
-        { id: 'medieval', label: 'Pfalz 1789', icon: '📜' },
-        { id: 'military1814', label: 'Military 1814', icon: '🪖' },
-        { id: 'ohm', label: 'OHM', icon: '🏛️' },
+        { id: 'medieval', label: 'Pfalz 1789' },
+        { id: 'military1814', label: 'Military 1814' },
+        { id: 'ohm', label: 'OHM' },
       ],
     },
   ]
@@ -36,7 +36,6 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {} }) {
                   aria-label={`Switch to ${layer.label} view`}
                   aria-pressed={activeLayer === layer.id}
                 >
-                  <span className={styles.icon}>{layer.icon}</span>
                   <span className={styles.label}>{layer.label}</span>
                 </button>
               ))}
