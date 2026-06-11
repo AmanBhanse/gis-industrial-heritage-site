@@ -15,7 +15,7 @@
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
       ],
       "additionalInfo": "Guided tours available on weekends",
-      "polygon": [[49.4472, 7.7560], [49.4472, 7.7590], [49.4454, 7.7590], [49.4454, 7.7560]]
+      "polygon": [[49.4472, 7.7560], [49.4476, 7.7560], [49.4476, 7.7575], [49.4478, 7.7580], [49.4473, 7.7585], [49.4468, 7.7583], [49.4466, 7.7578], [49.4468, 7.7570], [49.4470, 7.7560]]
     },
     {
       "id": 2,
@@ -64,7 +64,7 @@
         "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
       ],
       "additionalInfo": "Mixed-use development with 85 residential units",
-      "polygon": [[49.4516, 7.7604], [49.4516, 7.7620], [49.4504, 7.7620], [49.4504, 7.7604]]
+      "polygon": [[49.4522, 7.7596], [49.4525, 7.7600], [49.4523, 7.7612], [49.4518, 7.7615], [49.4510, 7.7618], [49.4505, 7.7616], [49.4502, 7.7608], [49.4503, 7.7598], [49.4508, 7.7594], [49.4516, 7.7593]]
     },
     {
       "id": 5,
@@ -81,7 +81,7 @@
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
       ],
       "additionalInfo": "Operating as specialty metal foundry",
-      "polygon": [[49.4305, 7.7412], [49.4305, 7.7434], [49.4291, 7.7434], [49.4291, 7.7412]]
+      "polygon": [[49.4312, 7.7405], [49.4315, 7.7410], [49.4313, 7.7422], [49.4310, 7.7428], [49.4302, 7.7430], [49.4295, 7.7425], [49.4293, 7.7415], [49.4297, 7.7408], [49.4305, 7.7403]]
     },
     {
       "id": 6,
@@ -98,7 +98,7 @@
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
       ],
       "additionalInfo": "Restricted access - structural assessment ongoing",
-      "polygon": [[49.4364, 7.7488], [49.4364, 7.7514], [49.4348, 7.7514], [49.4348, 7.7488]]
+      "polygon": [[49.4371, 7.7480], [49.4375, 7.7485], [49.4373, 7.7502], [49.4370, 7.7515], [49.4360, 7.7518], [49.4348, 7.7515], [49.4345, 7.7505], [49.4347, 7.7488], [49.4355, 7.7482], [49.4365, 7.7478]]
     },
     {
       "id": 7,
@@ -115,7 +115,7 @@
         "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
       ],
       "additionalInfo": "Cultural district with regular art events",
-      "polygon": [[49.4456, 7.7540], [49.4456, 7.7572], [49.4434, 7.7572], [49.4434, 7.7540]]
+      "polygon": [[49.4463, 7.7533], [49.4468, 7.7538], [49.4467, 7.7560], [49.4465, 7.7575], [49.4456, 7.7580], [49.4445, 7.7578], [49.4435, 7.7568], [49.4433, 7.7548], [49.4438, 7.7533], [49.4450, 7.7530]]
     },
     {
       "id": 8,
@@ -132,7 +132,7 @@
         "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
       ],
       "additionalInfo": "Museum open Saturdays and Sundays 10am-4pm",
-      "polygon": [[49.4392, 7.7526], [49.4392, 7.7542], [49.4378, 7.7542], [49.4378, 7.7526]]
+      "polygon": [[49.4399, 7.7518], [49.4403, 7.7523], [49.4401, 7.7538], [49.4396, 7.7545], [49.4385, 7.7543], [49.4378, 7.7535], [49.4378, 7.7523], [49.4382, 7.7516], [49.4391, 7.7515]]
     },
     {
       "id": 9,
@@ -148,7 +148,8 @@
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
         "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
       ],
-      "additionalInfo": "Design school campus with 200+ students"
+      "additionalInfo": "Design school campus with 200+ students",
+      "polygon": [[49.4530, 7.7590], [49.4536, 7.7595], [49.4535, 7.7612], [49.4530, 7.7622], [49.4520, 7.7620], [49.4512, 7.7608], [49.4513, 7.7592], [49.4522, 7.7588]]
     },
     {
       "id": 10,
@@ -164,7 +165,8 @@
         "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
         "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
       ],
-      "additionalInfo": "Company tours available for groups"
+      "additionalInfo": "Company tours available for groups",
+      "polygon": [[49.4320, 7.7458], [49.4325, 7.7463], [49.4323, 7.7478], [49.4318, 7.7485], [49.4308, 7.7483], [49.4303, 7.7472], [49.4305, 7.7460], [49.4313, 7.7455]]
     },
     {
       "id": 11,
@@ -181,7 +183,7 @@
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400"
       ],
       "additionalInfo": "Heritage conservation zone since 2003",
-      "polygon": [[49.4492, 7.7718], [49.4492, 7.7742], [49.4468, 7.7746], [49.4466, 7.7724], [49.4474, 7.7714]]
+      "polygon": [[49.4498, 7.7708], [49.4505, 7.7715], [49.4503, 7.7738], [49.4498, 7.7750], [49.4485, 7.7748], [49.4472, 7.7740], [49.4468, 7.7725], [49.4470, 7.7710], [49.4480, 7.7705], [49.4492, 7.7704]]
     },
     {
       "id": 12,
@@ -198,7 +200,7 @@
         "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400"
       ],
       "additionalInfo": "Annual heritage open day in September",
-      "polygon": [[49.4341, 7.7438], [49.4341, 7.7462], [49.4319, 7.7460], [49.4318, 7.7440]]
+      "polygon": [[49.4348, 7.7430], [49.4353, 7.7435], [49.4352, 7.7455], [49.4347, 7.7468], [49.4335, 7.7467], [49.4320, 7.7458], [49.4318, 7.7440], [49.4323, 7.7428], [49.4337, 7.7425]]
     },
     {
       "id": 13,
@@ -215,8 +217,144 @@
         "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400"
       ],
       "additionalInfo": "Plaque trail self-guided tour available",
-      "polygon": [[49.4593, 7.7608], [49.4593, 7.7632], [49.4568, 7.7634], [49.4566, 7.7610]]
+      "polygon": [[49.4600, 7.7598], [49.4605, 7.7605], [49.4604, 7.7630], [49.4598, 7.7642], [49.4585, 7.7640], [49.4570, 7.7630], [49.4568, 7.7610], [49.4572, 7.7598], [49.4588, 7.7595]]
+    },
+    {
+      "id": 14,
+      "name": "Cotton Mill Ost",
+      "category": "factory",
+      "yearBuilt": 1891,
+      "status": "converted",
+      "era": "1800s",
+      "lat": 49.4520,
+      "lng": 7.7680,
+      "description": "A four-storey cotton mill built in 1891 featuring an impressive brick facade with tall arched windows. The mill operated continuously until 1987, employing up to 400 workers in its peak years. Converted into a mixed-use complex with apartments, offices, and a performance venue in the former production hall.",
+      "images": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+      ],
+      "additionalInfo": "Summer concert series in main hall",
+      "polygon": [[49.4538, 7.7658], [49.4543, 7.7665], [49.4541, 7.7688], [49.4536, 7.7700], [49.4520, 7.7698], [49.4508, 7.7688], [49.4508, 7.7665], [49.4512, 7.7655], [49.4526, 7.7652]]
+    },
+    {
+      "id": 15,
+      "name": "Dye Works Westend",
+      "category": "factory",
+      "yearBuilt": 1897,
+      "status": "active",
+      "era": "1800s",
+      "lat": 49.4268,
+      "lng": 7.7390,
+      "description": "One of the region's largest dye works, established in 1897 to serve the flourishing textile industry. The complex features distinctive tall chimneys, boiler houses, and storage buildings. Still operational as a speciality chemical processing facility, it represents continuous industrial heritage across three centuries.",
+      "images": [
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
+      ],
+      "additionalInfo": "Industrial heritage status protected since 1998",
+      "polygon": [[49.4286, 7.7366], [49.4291, 7.7372], [49.4290, 7.7395], [49.4285, 7.7410], [49.4270, 7.7412], [49.4255, 7.7405], [49.4253, 7.7378], [49.4260, 7.7364], [49.4274, 7.7362]]
+    },
+    {
+      "id": 16,
+      "name": "Papermill Weststadt",
+      "category": "factory",
+      "yearBuilt": 1904,
+      "status": "abandoned",
+      "era": "1900-1950",
+      "lat": 49.4392,
+      "lng": 7.7590,
+      "description": "Built in 1904 to produce specialty papers for printing and packaging, the Weststadt mill was a technological marvel of its time with state-of-the-art Fourdrinier machines. Production ceased in 2001 due to market consolidation. The multi-building complex with its massive paper drying halls remains largely intact, awaiting adaptive reuse.",
+      "images": [
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
+      ],
+      "additionalInfo": "Under consideration for cultural center conversion",
+      "polygon": [[49.4410, 7.7566], [49.4415, 7.7572], [49.4414, 7.7598], [49.4408, 7.7612], [49.4392, 7.7614], [49.4378, 7.7605], [49.4376, 7.7580], [49.4382, 7.7565], [49.4398, 7.7562]]
+    },
+    {
+      "id": 17,
+      "name": "Ceramic Factory Mühl",
+      "category": "factory",
+      "yearBuilt": 1875,
+      "status": "converted",
+      "era": "1800s",
+      "lat": 49.4548,
+      "lng": 7.7545,
+      "description": "Established in 1875, the Mühl ceramics factory was renowned throughout the region for decorative tiles and architectural ceramics. The facility included a kiln house with distinctive conical chimneys and workers' housing. Sensitively converted into a pottery school and exhibition space, maintaining the industrial aesthetic while celebrating the heritage craft.",
+      "images": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+      ],
+      "additionalInfo": "Pottery courses and exhibitions year-round",
+      "polygon": [[49.4566, 7.7521], [49.4571, 7.7527], [49.4570, 7.7552], [49.4564, 7.7565], [49.4550, 7.7563], [49.4536, 7.7552], [49.4535, 7.7528], [49.4540, 7.7520], [49.4554, 7.7518]]
+    },
+    {
+      "id": 18,
+      "name": "Engineering Works Süd",
+      "category": "factory",
+      "yearBuilt": 1906,
+      "status": "active",
+      "era": "1900-1950",
+      "lat": 49.4278,
+      "lng": 7.7478,
+      "description": "Founded in 1906 as a heavy machinery manufacturer, the Engineering Works Süd specialized in steam engines and industrial pumps. The complex features extensive workshop halls with soaring timber roof structures and impressive brick facades. Still producing custom industrial equipment under new ownership, maintaining the legacy of precision engineering.",
+      "images": [
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400",
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400"
+      ],
+      "additionalInfo": "Heritage building certification 2015",
+      "polygon": [[49.4296, 7.7454], [49.4301, 7.7460], [49.4300, 7.7485], [49.4295, 7.7500], [49.4280, 7.7502], [49.4265, 7.7490], [49.4263, 7.7465], [49.4270, 7.7453], [49.4283, 7.7450]]
+    },
+    {
+      "id": 19,
+      "name": "Brewery Burghardt Complex",
+      "category": "factory",
+      "yearBuilt": 1862,
+      "status": "museum",
+      "era": "1800s",
+      "lat": 49.4425,
+      "lng": 7.7512,
+      "description": "One of Kaiserslautern's oldest businesses, Brewery Burghardt was established in 1862. The complex includes fermenting cellars carved into hillside rock, brewing halls, and a distinctive Victorian-era office building. Now operating as a beer museum with guided brewery tours, the site tells the story of traditional German brewing heritage.",
+      "images": [
+        "https://images.unsplash.com/photo-1474487548417-552864b1330b?w=400",
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400"
+      ],
+      "additionalInfo": "Museum tours daily 10am-5pm, beer shop onsite",
+      "polygon": [[49.4443, 7.7488], [49.4448, 7.7494], [49.4446, 7.7520], [49.4440, 7.7535], [49.4425, 7.7533], [49.4410, 7.7520], [49.4410, 7.7495], [49.4416, 7.7485], [49.4430, 7.7483]]
+    },
+    {
+      "id": 20,
+      "name": "Glass Kiln Works Ost",
+      "category": "factory",
+      "yearBuilt": 1888,
+      "status": "abandoned",
+      "era": "1800s",
+      "lat": 49.4605,
+      "lng": 7.7710,
+      "description": "Built in 1888 to produce specialty glassware and architectural glass, the works featured massive glass-melting furnaces and an extensive warehouse. The distinctive red-brick structure with tall industrial windows is one of the city's landmark buildings. Closed in 1992, the building remains largely intact but requires restoration.",
+      "images": [
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400",
+        "https://images.unsplash.com/photo-1581091918492-8ff080ef069b?w=400"
+      ],
+      "additionalInfo": "Protected monument status, restoration fundraising ongoing",
+      "polygon": [[49.4623, 7.7686], [49.4628, 7.7692], [49.4626, 7.7720], [49.4620, 7.7735], [49.4605, 7.7733], [49.4590, 7.7720], [49.4588, 7.7695], [49.4594, 7.7684], [49.4610, 7.7682]]
+    },
+    {
+      "id": 21,
+      "name": "Machinery Parts Factory Mitte",
+      "category": "factory",
+      "yearBuilt": 1900,
+      "status": "converted",
+      "era": "1900-1950",
+      "lat": 49.4388,
+      "lng": 7.7458,
+      "description": "Established in 1900, this machinery parts factory produced precision components for textile and printing machinery. The multi-building complex features characteristic early-industrial architecture with exposed brick and cast iron structural elements. Sensitively converted into creative studios and flexible event spaces while preserving original architectural details.",
+      "images": [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400",
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+      ],
+      "additionalInfo": "Home to 20+ artist studios and makers",
+      "polygon": [[49.4406, 7.7434], [49.4411, 7.7440], [49.4410, 7.7465], [49.4405, 7.7480], [49.4390, 7.7482], [49.4375, 7.7470], [49.4373, 7.7445], [49.4379, 7.7433], [49.4392, 7.7430]]
     }
   ],
-  "route": [1, 7, 4, 9, 13, 11, 3, 8, 6, 2, 10, 5, 12]
+  "route": [1, 7, 4, 9, 13, 11, 3, 8, 6, 2, 10, 5, 12, 14, 15, 16, 17, 18, 19, 20, 21]
 }
