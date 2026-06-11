@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 import Layout from './components/Layout'
 import AppSidebar from './components/AppSidebar'
 import MapContainer from './components/MapContainer'
 import { useFilteredSites } from './hooks/useFilteredSites'
+import { useSkulpturenWFS } from './hooks/useSkulpturenWFS'
 import heritageData from './data/heritage-sites.json'
 
 /**
@@ -26,14 +27,19 @@ function App() {
   // State management
   const [selectedSite, setSelectedSite] = useState(null)
   const [showRoute, setShowRoute] = useState(false)
+  const [showSculptures, setShowSculptures] = useState(true)
+  const [sculptureCategories, setSculptureCategories] = useState([])
   const [filters, setFilters] = useState({
     categories: [],
     eras: [],
     statuses: []
   })
+  // Ref to MapContainer's flyTo function
+  const flyToRef = useRef(null)
 
   // Get filtered sites based on current filters using custom hook
   const filteredSites = useFilteredSites(heritageData.sites, filters)
+  const { sculptures } = useSkulpturenWFS()
 
   /**
    * Handle marker click event from map
@@ -49,6 +55,15 @@ function App() {
    */
   const handleSelectSite = (site) => {
     setSelectedSite(site)
+    if (site?.lat && site?.lng) {
+      flyToRef.current?.({ lat: site.lat, lng: site.lng })
+    }
+  }
+
+  const handleSelectSculpture = (sculpture) => {
+    if (sculpture?.lat && sculpture?.lng) {
+      flyToRef.current?.({ lat: sculpture.lat, lng: sculpture.lng })
+    }
   }
 
   /**
@@ -87,6 +102,12 @@ function App() {
       onCloseSiteDetails={handleCloseSiteDetails}
       showRoute={showRoute}
       onRouteToggle={setShowRoute}
+      showSculptures={showSculptures}
+      onSculpturesToggle={setShowSculptures}
+      sculptureCategories={sculptureCategories}
+      onSculptureCategoriesChange={setSculptureCategories}
+      sculptures={sculptures}
+      onSelectSculpture={handleSelectSculpture}
     />
   )
 
@@ -99,6 +120,10 @@ function App() {
         allSites={heritageData.sites}
         route={heritageData.route}
         showRoute={showRoute}
+        showSculptures={showSculptures}
+        sculptureCategories={sculptureCategories}
+        sculptures={sculptures}
+        onFlyTo={(fn) => { flyToRef.current = fn }}
       />
     </Layout>
   )

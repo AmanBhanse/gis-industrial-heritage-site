@@ -7,6 +7,7 @@ import TileLayerSwitcher from './TileLayerSwitcher'
 import PolygonLayer from './PolygonLayer'
 import RouteLayer from './RouteLayer'
 import MapLibreLayer from './MapLibreLayer'
+import SkulpturenLayer from './SkulpturenLayer'
 import { createCategoryIcon } from '../utils/markerIcons'
 
 function MapInstanceBridge({ onReady }) {
@@ -35,12 +36,20 @@ L.Icon.Default.mergeOptions({
  * @param {Function} onMarkerClick - Callback when a marker is clicked
  * @returns {JSX.Element}
  */
-function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false }) {
+function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false, showSculptures = false, sculptureCategories = [], sculptures = [], onFlyTo = () => {} }) {
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 13
   const [activeLayer, setActiveLayer] = useState('basemapde')
   const [ohmYear, setOhmYear] = useState(1800)
   const [mapInstance, setMapInstance] = useState(null)
+
+  // Register flyTo callback with parent
+  useEffect(() => {
+    if (!mapInstance) return
+    onFlyTo(({ lat, lng }) => {
+      mapInstance.flyTo([lat, lng], Math.max(mapInstance.getZoom(), 15), { duration: 1 })
+    })
+  }, [mapInstance, onFlyTo])
 
   // Create an active/highlighted marker icon
   const createActiveMarkerIcon = (category) => {
@@ -130,6 +139,11 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
         {/* Walking Tour Route */}
         <RouteLayer sites={allSites} route={route} visible={showRoute} />
+
+        {/* Public Art / Sculptures overlay */}
+        {showSculptures && (
+          <SkulpturenLayer sculptures={sculptures} activeCategories={sculptureCategories} />
+        )}
 
         {/* Site Markers */}
         {sites && sites.map((site) => (
