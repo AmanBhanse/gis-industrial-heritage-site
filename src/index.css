@@ -182,33 +182,35 @@ p {
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.99), rgba(11, 19, 34, 0.99));
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
-  border: 1px solid #334155;
+  border-radius: 14px !important;
+  background: linear-gradient(180deg, rgb(15 23 42 / 0.99), rgb(11 19 34 / 0.99)) !important;
+  box-shadow: 0 16px 36px rgb(0 0 0 / 0.42) !important;
+  border: 1px solid #334155 !important;
+  padding: 0 !important;
 }
 
 .leaflet-popup-tip {
-  background-color: #0f172a;
-  border: 1px solid #334155;
+  background-color: #0f172a !important;
 }
 
 .leaflet-popup-content {
-  margin: 12px 14px;
+  margin: 0 !important;
   color: #e2e8f0;
 }
 
 .leaflet-popup-close-button {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 18px !important;
+  font-weight: 700 !important;
   opacity: 0.7;
-  color: #94a3b8;
+  color: #94a3b8 !important;
   transition: opacity 0.2s ease;
+  top: 4px !important;
+  right: 6px !important;
 }
 
 .leaflet-popup-close-button:hover {
   opacity: 1;
-  color: #e2e8f0;
+  color: #e2e8f0 !important;
 }
 
 /* Active/selected marker glow */

@@ -22,7 +22,7 @@ function SiteMarkers({ sites, selectedSite, onMarkerClick, onOpenSiteDetails, ma
       }}
     >
       <Popup>
-        <div className="box-border min-w-[240px] max-w-[300px] rounded-xl bg-gradient-to-b from-[#0f172a]/98 to-[#0b1322]/98 p-4 text-slate-100">
+        <div className="box-border min-w-[240px] max-w-[300px] p-4 text-slate-100">
           <div className="mb-2 flex items-start justify-between gap-2.5">
             <h3 className="m-0 text-lg font-bold leading-tight tracking-tight text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]">
               {site.name}
