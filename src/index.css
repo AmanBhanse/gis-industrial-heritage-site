@@ -198,6 +198,16 @@ p {
 .leaflet-popup-content {
   margin: 0 !important;
   line-height: 1.5;
+  color: #f1f5f9 !important;
+}
+
+/* Reset Leaflet's aggressive p/strong margin overrides inside popups */
+.leaflet-popup-content p {
+  margin: 0 !important;
+}
+
+.leaflet-popup-content * {
+  color: inherit;
 }
 
 .leaflet-popup-close-button {

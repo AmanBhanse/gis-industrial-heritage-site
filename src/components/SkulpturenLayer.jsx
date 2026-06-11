@@ -28,23 +28,23 @@ function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculp
             {s.name || '(unnamed)'}
           </h3>
           {/* Meta */}
-          <div className="space-y-1.5 text-xs text-slate-300">
+          <div className="space-y-1.5 text-xs text-white">
             {s.artist   && (
               <div className="flex items-center gap-2">
                 <span className="text-base leading-none">🎨</span>
-                <span>{s.artist}</span>
+                <span className="text-white">{s.artist}</span>
               </div>
             )}
             {s.year     && (
               <div className="flex items-center gap-2">
                 <span className="text-base leading-none">📅</span>
-                <span>{s.year}</span>
+                <span className="text-white">{s.year}</span>
               </div>
             )}
             {s.location && (
               <div className="flex items-center gap-2">
                 <span className="text-base leading-none">📍</span>
-                <span>{s.location}</span>
+                <span className="text-white">{s.location}</span>
               </div>
             )}
           </div>
@@ -65,7 +65,7 @@ function SkulpturenLayer({ sculptures = [], activeCategories = [], onSelectSculp
           )}
           {/* Source + details button row */}
           <div className="mt-3 flex items-center justify-between gap-2">
-            <span className="text-[11px] text-slate-500">Geoportal Kaiserslautern</span>
+            <span className="text-[11px] text-slate-400">Geoportal Kaiserslautern</span>
             <button
               type="button"
               className="flex cursor-pointer items-center gap-1 rounded-md border border-violet-500/30 bg-violet-500/10 px-2 py-1 text-[11px] font-medium text-violet-300 transition-colors hover:bg-violet-500/20 hover:text-violet-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-400"

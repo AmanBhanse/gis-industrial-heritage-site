@@ -24,20 +24,20 @@ function SiteMarkers({ sites, selectedSite, onMarkerClick, onOpenSiteDetails, ma
       <Popup>
         <div className="w-64 p-4 pr-8">
           {/* Title row */}
-          <div className="mb-3 flex items-start gap-2">
-            <h3 className="flex-1 text-sm font-semibold leading-snug text-white">
+          <div className="mb-3">
+            <h3 className="text-sm font-semibold leading-snug text-white">
               {site.name}
             </h3>
           </div>
           {/* Meta rows */}
           <div className="space-y-1.5 text-xs">
-            <div className="flex items-center gap-2 text-slate-300">
-              <span className="text-slate-500">Category</span>
-              <span className="ml-auto font-medium text-slate-100">{site.category}</span>
+            <div className="flex items-center gap-2">
+              <span className="text-slate-400">Category</span>
+              <span className="ml-auto font-medium text-white">{site.category}</span>
             </div>
-            <div className="flex items-center gap-2 text-slate-300">
-              <span className="text-slate-500">Status</span>
-              <span className="ml-auto font-medium text-slate-100">{site.status}</span>
+            <div className="flex items-center gap-2">
+              <span className="text-slate-400">Status</span>
+              <span className="ml-auto font-medium text-white">{site.status}</span>
             </div>
           </div>
           {/* Details button */}
