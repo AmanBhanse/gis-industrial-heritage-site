@@ -3,9 +3,7 @@ import { PanelLeftIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 function Layout({ header, sidebar, children }) {
-  const [open, setOpen] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth > 1280 : true
-  )
+  const [open, setOpen] = useState(true)
 
   const handleTransitionEnd = useCallback(() => {
     window.dispatchEvent(new Event('resize'))

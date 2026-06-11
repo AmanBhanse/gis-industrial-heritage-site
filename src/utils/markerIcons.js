@@ -130,3 +130,19 @@ export function getSculptureColor(category) {
   const config = SCULPTURE_CONFIG[category];
   return config ? config.color : "#a78bfa";
 }
+
+/**
+ * Create an active/highlighted version of a category icon
+ * @param {String} category - Site category
+ * @returns {L.Icon} Leaflet icon with active-marker class and larger size
+ */
+export function createActiveMarkerIcon(category) {
+  const base = createCategoryIcon(category)
+  return L.icon({
+    ...base.options,
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
+    popupAnchor: [0, -50],
+    className: 'active-marker',
+  })
+}
