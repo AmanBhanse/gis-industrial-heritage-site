@@ -285,14 +285,50 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
       {/* Map Legend */}
       <div className={styles.legend}>
-        <div className={styles.legendTitle}>Flächentypen</div>
+        <div className={styles.legendTitle}>Heritage Sites</div>
         <div className={styles.legendItem}>
-          <span className={styles.legendSwatch} style={{ backgroundColor: '#8e44ad' }} />
-          Werksgelände
+          <span className={styles.legendEmoji}>🏭</span>
+          Factory
         </div>
         <div className={styles.legendItem}>
-          <span className={styles.legendSwatch} style={{ backgroundColor: '#27ae60' }} />
-          Arbeitersiedlung
+          <span className={styles.legendEmoji}>⛏️</span>
+          Mine
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>📦</span>
+          Warehouse
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>🚂</span>
+          Railway
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>🏘️</span>
+          Settlement
+        </div>
+        
+        <div className={styles.legendDivider} />
+        
+        <div className={styles.legendTitle}>Public Art</div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>🗿</span>
+          Skulptur
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>🏛️</span>
+          Denkmal
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>⛲</span>
+          Brunnen
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>🎭</span>
+          Relief
+        </div>
+        <div className={styles.legendItem}>
+          <span className={styles.legendEmoji}>🎨</span>
+          Plastik
         </div>
       </div>
     </div>
