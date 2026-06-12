@@ -32,19 +32,19 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
           {groups.map((group, index) => (
             <div
               key={group.label}
-              className={`flex min-w-0 flex-1 flex-col gap-1 ${
+              className={`flex min-w-0 flex-1 flex-col gap-1 justify-center ${
                 index > 0 ? 'border-l border-white/10 pl-1.5' : ''
               }`}
             >
               <span className="text-center font-bold uppercase tracking-wider text-blue-400">
                 {group.label}
               </span>
-              <div className="flex flex-wrap">
+              <div className="flex flex-wrap gap-1 justify-evenly">
                 {group.layers.map((layer) => (
                   <Tooltip key={layer.id}>
                     <TooltipTrigger
                       type="button"
-                      className="amanbutton shrink-0 whitespace-nowrap rounded px-1 py-px m-0 border-0 bg-transparent appearance-none text-[9px] font-medium leading-none transition-colors hover:opacity-100 hover:transform-none hover:shadow-none text-white/55 hover:bg-white/10 hover:text-white aria-pressed:!bg-blue-600 aria-pressed:!text-white aria-pressed:!ring-1 aria-pressed:!ring-blue-300/50"
+                      className="amanbutton shrink-0 whitespace-nowrap rounded px-1 py-px m-0 border-0 bg-transparent appearance-none text-[7px] leading-none transition-colors hover:opacity-100 hover:transform-none hover:shadow-none text-white/55 hover:bg-white/10 hover:text-white aria-pressed:!bg-blue-600 aria-pressed:!text-white aria-pressed:!ring-1 aria-pressed:!ring-blue-300/50"
                       onClick={() => onLayerChange(layer.id)}
                       aria-label={`Switch to ${layer.label} view`}
                       aria-pressed={activeLayer === layer.id}
