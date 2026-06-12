@@ -22,13 +22,13 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
   ]
 
   const wrapperClasses = inline
-    ? 'aman-inline flex-1 min-w-0'
+    ? 'flex-1 min-w-0'
     : 'absolute right-[var(--spacing-md)] top-[var(--spacing-md)] z-[1000]'
 
   return (
     <TooltipProvider delayDuration={300}>
       <div className={wrapperClasses}>
-        <div className="flex h-full w-full gap-1 rounded-lg border border-white/10 bg-gray-900/90 p-1.5 shadow-lg backdrop-blur-sm">
+        <div className="aman flex h-full w-full gap-1 rounded-lg border border-white/10 bg-gray-900/90 p-1.5 shadow-lg backdrop-blur-sm">
           {groups.map((group, index) => (
             <div
               key={group.label}
@@ -44,7 +44,7 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
                   <Tooltip key={layer.id}>
                     <TooltipTrigger
                       type="button"
-                      className="amanbutton shrink-0 whitespace-nowrap rounded px-1 py-px m-0 border-0 bg-transparent appearance-none text-[7px] leading-none transition-colors hover:opacity-100 hover:transform-none hover:shadow-none text-white/55 hover:bg-white/10 hover:text-white aria-pressed:!bg-blue-600 aria-pressed:!text-white aria-pressed:!ring-1 aria-pressed:!ring-blue-300/50"
+                      className="shrink-0 whitespace-nowrap rounded px-1 py-px border-0 bg-transparent appearance-none text-[7px] leading-none transition-colors hover:opacity-100 hover:transform-none hover:shadow-none text-white/55 hover:bg-white/10 hover:text-white aria-pressed:!bg-blue-600 aria-pressed:!text-white aria-pressed:!ring-1 aria-pressed:!ring-blue-300/50"
                       onClick={() => onLayerChange(layer.id)}
                       aria-label={`Switch to ${layer.label} view`}
                       aria-pressed={activeLayer === layer.id}
