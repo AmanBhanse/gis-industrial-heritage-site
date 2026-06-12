@@ -30,7 +30,7 @@ function App() {
   const [dialogSculpture, setDialogSculpture] = useState(null)
   const [showRoute, setShowRoute] = useState(false)
   const [showHeritage, setShowHeritage] = useState(true)
-  const [showSculptures, setShowSculptures] = useState(true)
+  const [showSculptures, setShowSculptures] = useState(false)
   const [sculptureCategories, setSculptureCategories] = useState([])
   const [filters, setFilters] = useState({
     categories: [],
