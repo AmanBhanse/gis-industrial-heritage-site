@@ -41,7 +41,7 @@ function MapLegend() {
   const [open, setOpen] = useState(true)
 
   return (
-    <div className="absolute bottom-[52px] left-2.5 z-[1000] min-w-[130px] max-h-[360px] overflow-y-auto rounded-lg border border-blue-400/20 bg-gray-900/95 p-1.5 text-[11px] text-white/90 shadow-xl backdrop-blur-sm [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:rounded [&::-webkit-scrollbar-track]:bg-blue-400/10 [&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-thumb]:bg-blue-400/30 [&::-webkit-scrollbar-thumb:hover]:bg-blue-400/50">
+    <div className="absolute bottom-[52px] left-2.5 z-[1000] min-w-[130px] max-h-[360px] overflow-y-auto rounded-lg border border-blue-400/20 bg-gray-900/95 p-1.5 text-[14px] text-white/90 shadow-xl backdrop-blur-sm [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:rounded [&::-webkit-scrollbar-track]:bg-blue-400/10 [&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-thumb]:bg-blue-400/30 [&::-webkit-scrollbar-thumb:hover]:bg-blue-400/50">
       <button
         onClick={() => setOpen((o) => !o)}
         className="flex w-full cursor-pointer items-center gap-1.5 border-none bg-transparent py-0.5 text-[11px] font-semibold text-blue-400 hover:text-blue-300"
