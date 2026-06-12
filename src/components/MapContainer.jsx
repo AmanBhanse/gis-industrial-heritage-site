@@ -12,6 +12,7 @@ import RouteLayer from './RouteLayer'
 import SkulpturenLayer from './SkulpturenLayer'
 import SiteMarkers from './map/SiteMarkers'
 import { useOSRMRoute } from '../hooks/useOSRMRoute'
+import LayerToggles from './map/LayerToggles'
 
 function MapInstanceBridge({ onReady }) {
   const map = useMap()
@@ -39,7 +40,7 @@ L.Icon.Default.mergeOptions({
  * @param {Function} onMarkerClick - Callback when a marker is clicked
  * @returns {JSX.Element}
  */
-function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false, showSculptures = false, sculptureCategories = [], sculptures = [], onFlyTo = () => {}, onSelectSculpture = () => {}, onOpenSiteDetails = () => {}, onOpenSculptureDetails = () => {} }) {
+function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick = () => {}, allSites = [], route = [], showRoute = false, showHeritage = true, onHeritageToggle = () => {}, showSculptures = false, onSculpturesToggle = () => {}, sculptureCategories = [], sculptures = [], onFlyTo = () => {}, onSelectSculpture = () => {}, onOpenSiteDetails = () => {}, onOpenSculptureDetails = () => {} }) {
   const KAISERSLAUTERN_CENTER = [49.4463, 7.7575]
   const DEFAULT_ZOOM = 13
   const [activeLayer, setActiveLayer] = useState('basemapde')
@@ -88,14 +89,14 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
         <TileLayers activeLayer={activeLayer} ohmYear={ohmYear} />
 
         {/* Polygon Areas */}
-        <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />
+        {showHeritage && <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />}
 
         {/* Walking Tour Route */}
         <RouteLayer
           sites={allSites}
           route={route}
           routePositions={routePositions}
-          visible={showRoute}
+          visible={showRoute && showHeritage}
         />
 
         {/* Public Art / Sculptures overlay */}
@@ -109,29 +110,40 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
         )}
 
         {/* Site Markers */}
-        <SiteMarkers
-          sites={sites}
-          selectedSite={selectedSite}
-          onMarkerClick={onMarkerClick}
-          onOpenSiteDetails={onOpenSiteDetails}
-          markerRefs={markerRefs}
-        />
+        {showHeritage && (
+          <SiteMarkers
+            sites={sites}
+            selectedSite={selectedSite}
+            onMarkerClick={onMarkerClick}
+            onOpenSiteDetails={onOpenSiteDetails}
+            markerRefs={markerRefs}
+          />
+        )}
       </MapContainer>
 
       {/* Top-right map controls */}
-      <div className="aman1 absolute top-(--spacing-md) right-(--spacing-md) z-1000  w-1/2 ">
+     <div className="absolute top-(--spacing-md) right-(--spacing-md) z-1000  w-4/5 ">
 
         <div className='control-content flex items-stretch gap-1 w-full'>
-          <TileLayerSwitcher
-            activeLayer={activeLayer}
-            onLayerChange={setActiveLayer}
-            inline={true}
-          />
 
-          <ZoomControls
-            onZoomIn={() => mapInstance?.zoomIn()}
-            onZoomOut={() => mapInstance?.zoomOut()}
-          />
+        {/* Layer visibility switches */}
+        <LayerToggles
+          showHeritage={showHeritage}
+          onHeritageToggle={onHeritageToggle}
+          showSculptures={showSculptures}
+          onSculpturesToggle={onSculpturesToggle}
+        />
+
+        <TileLayerSwitcher
+          activeLayer={activeLayer}
+          onLayerChange={setActiveLayer}
+          inline={true}
+        />
+
+        <ZoomControls
+          onZoomIn={() => mapInstance?.zoomIn()}
+          onZoomOut={() => mapInstance?.zoomOut()}
+        />
 
         </div>
       </div>

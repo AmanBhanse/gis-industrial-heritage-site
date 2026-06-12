@@ -29,6 +29,7 @@ function App() {
   const [dialogSite, setDialogSite] = useState(null)
   const [dialogSculpture, setDialogSculpture] = useState(null)
   const [showRoute, setShowRoute] = useState(false)
+  const [showHeritage, setShowHeritage] = useState(true)
   const [showSculptures, setShowSculptures] = useState(true)
   const [sculptureCategories, setSculptureCategories] = useState([])
   const [filters, setFilters] = useState({
@@ -142,7 +143,10 @@ function App() {
         allSites={heritageData.sites}
         route={heritageData.route}
         showRoute={showRoute}
+        showHeritage={showHeritage}
+        onHeritageToggle={setShowHeritage}
         showSculptures={showSculptures}
+        onSculpturesToggle={setShowSculptures}
         sculptureCategories={sculptureCategories}
         sculptures={sculptures}
         onSelectSculpture={handleSelectSculpture}
