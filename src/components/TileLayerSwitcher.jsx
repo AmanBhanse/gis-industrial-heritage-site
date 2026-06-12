@@ -42,19 +42,14 @@ function TileLayerSwitcher({ activeLayer = 'osm', onLayerChange = () => {}, inli
               <div className="flex flex-wrap">
                 {group.layers.map((layer) => (
                   <Tooltip key={layer.id}>
-                    <TooltipTrigger asChild>
-                      <button
-                        className={`amanbutton shrink-0 whitespace-nowrap rounded p-0 text-[9px] font-medium leading-none transition-colors ${
-                          activeLayer === layer.id
-                            ? 'bg-blue-600 text-white'
-                            : 'text-white/55 hover:bg-white/10 hover:text-white'
-                        }`}
-                        onClick={() => onLayerChange(layer.id)}
-                        aria-label={`Switch to ${layer.label} view`}
-                        aria-pressed={activeLayer === layer.id}
-                      >
-                        {layer.label}
-                      </button>
+                    <TooltipTrigger
+                      type="button"
+                      className="amanbutton shrink-0 whitespace-nowrap rounded px-1 py-px m-0 border-0 bg-transparent appearance-none text-[9px] font-medium leading-none transition-colors hover:opacity-100 hover:transform-none hover:shadow-none text-white/55 hover:bg-white/10 hover:text-white aria-pressed:!bg-blue-600 aria-pressed:!text-white aria-pressed:!ring-1 aria-pressed:!ring-blue-300/50"
+                      onClick={() => onLayerChange(layer.id)}
+                      aria-label={`Switch to ${layer.label} view`}
+                      aria-pressed={activeLayer === layer.id}
+                    >
+                      {layer.label}
                     </TooltipTrigger>
                     <TooltipContent side="bottom">
                       {layer.provider}
