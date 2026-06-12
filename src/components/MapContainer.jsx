@@ -108,17 +108,21 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
       </MapContainer>
 
       {/* Top-right map controls */}
-      <div className="absolute top-[var(--spacing-md)] right-[var(--spacing-md)] z-[1000] flex w-[50vw] items-stretch gap-2">
-        <TileLayerSwitcher
-          activeLayer={activeLayer}
-          onLayerChange={setActiveLayer}
-          inline={true}
-        />
+      <div className="aman1 absolute top-(--spacing-md) right-(--spacing-md) z-1000  w-[50vw] ">
 
-        <ZoomControls
-          onZoomIn={() => mapInstance?.zoomIn()}
-          onZoomOut={() => mapInstance?.zoomOut()}
-        />
+        <div className='control-content flex items-stretch gap-1 w-full'>
+          <TileLayerSwitcher
+            activeLayer={activeLayer}
+            onLayerChange={setActiveLayer}
+            inline={true}
+          />
+
+          <ZoomControls
+            onZoomIn={() => mapInstance?.zoomIn()}
+            onZoomOut={() => mapInstance?.zoomOut()}
+          />
+
+        </div>
       </div>
 
       {/* OHM Year Slider — shown only when OHM layer is active */}
