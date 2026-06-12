@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import './App.css'
 import Layout from './components/Layout'
 import AppSidebar from './components/AppSidebar'
@@ -6,6 +6,7 @@ import MapContainer from './components/MapContainer'
 import { useFilteredSites } from './hooks/useFilteredSites'
 import { useSkulpturenWFS } from './hooks/useSkulpturenWFS'
 import heritageData from './data/heritage-sites.json'
+import { buildTourRoutes } from './utils/tourRoutes'
 
 /**
  * Main App Component
@@ -29,6 +30,7 @@ function App() {
   const [dialogSite, setDialogSite] = useState(null)
   const [dialogSculpture, setDialogSculpture] = useState(null)
   const [showRoute, setShowRoute] = useState(false)
+  const [tourType, setTourType] = useState('all')
   const [showHeritage, setShowHeritage] = useState(true)
   const [showSculptures, setShowSculptures] = useState(false)
   const [sculptureCategories, setSculptureCategories] = useState([])
@@ -43,6 +45,8 @@ function App() {
   // Get filtered sites based on current filters using custom hook
   const filteredSites = useFilteredSites(heritageData.sites, filters)
   const { sculptures } = useSkulpturenWFS()
+  const tourRoutes = useMemo(() => buildTourRoutes(heritageData.sites), [])
+  const activeRoute = tourRoutes[tourType] ?? tourRoutes.all
 
   /**
    * Handle marker click event from map
@@ -125,6 +129,8 @@ function App() {
       onCloseSculptureDetails={handleCloseSculptureDetails}
       showRoute={showRoute}
       onRouteToggle={setShowRoute}
+      tourType={tourType}
+      onTourTypeChange={setTourType}
       showSculptures={showSculptures}
       onSculpturesToggle={setShowSculptures}
       sculptureCategories={sculptureCategories}
@@ -141,7 +147,7 @@ function App() {
         selectedSite={selectedSite}
         onMarkerClick={handleMarkerClick}
         allSites={heritageData.sites}
-        route={heritageData.route}
+        route={activeRoute}
         showRoute={showRoute}
         showHeritage={showHeritage}
         onHeritageToggle={setShowHeritage}

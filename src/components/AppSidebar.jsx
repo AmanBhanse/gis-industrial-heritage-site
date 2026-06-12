@@ -28,6 +28,8 @@ function AppSidebar({
   onCloseSculptureDetails = () => {},
   showRoute = false,
   onRouteToggle = () => {},
+  tourType = 'all',
+  onTourTypeChange = () => {},
   showSculptures = false,
   onSculpturesToggle = () => {},
   sculptureCategories = [],
@@ -119,7 +121,12 @@ function AppSidebar({
           onSculptureCategoriesChange={onSculptureCategoriesChange}
         />
 
-        <RouteTab showRoute={showRoute} onRouteToggle={onRouteToggle} />
+        <RouteTab
+          showRoute={showRoute}
+          onRouteToggle={onRouteToggle}
+          tourType={tourType}
+          onTourTypeChange={onTourTypeChange}
+        />
       </Tabs>
     </div>
 

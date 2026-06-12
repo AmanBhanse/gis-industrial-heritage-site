@@ -1,7 +1,28 @@
 import { TabsContent } from '@/components/ui/tabs'
 import { SIDEBAR_THEME } from './SidebarConstants'
 
-function RouteTab({ showRoute, onRouteToggle }) {
+const TOUR_OPTIONS = [
+  {
+    value: 'short',
+    label: 'Short tour',
+    subtitle: '1 day',
+    description: 'Connect 5 nearby heritage sites.',
+  },
+  {
+    value: 'middle',
+    label: 'Middle tour',
+    subtitle: '2 day',
+    description: 'Connect 10 nearby heritage sites.',
+  },
+  {
+    value: 'all',
+    label: 'All location',
+    subtitle: 'Full route',
+    description: 'Connect every heritage site.',
+  },
+]
+
+function RouteTab({ showRoute, onRouteToggle, tourType = 'all', onTourTypeChange }) {
   return (
     <TabsContent value="route" className="m-0 flex-1 overflow-y-auto p-0">
       <div className="space-y-5 p-4">
@@ -32,6 +53,36 @@ function RouteTab({ showRoute, onRouteToggle }) {
             </div>
           </label>
         </div>
+        <div className="space-y-2">
+          {TOUR_OPTIONS.map((option) => {
+            const isSelected = option.value === tourType
+
+            return (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => onTourTypeChange(option.value)}
+                className="w-full rounded-lg border px-3 py-2 text-left transition-colors"
+                style={{
+                  background: isSelected ? '#1e3a5f' : SIDEBAR_THEME.surface,
+                  borderColor: isSelected ? '#60a5fa' : SIDEBAR_THEME.border,
+                }}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold" style={{ color: SIDEBAR_THEME.text }}>
+                    {option.label}
+                  </p>
+                  <span className="text-[11px] font-medium uppercase tracking-wide" style={{ color: isSelected ? '#93c5fd' : SIDEBAR_THEME.muted }}>
+                    {option.subtitle}
+                  </span>
+                </div>
+                <p className="mt-1 text-xs" style={{ color: SIDEBAR_THEME.muted }}>
+                  {option.description}
+                </p>
+              </button>
+            )
+          })}
+        </div>
         {showRoute && (
           <div
             className="space-y-1 rounded-lg p-3 text-xs"
@@ -44,8 +95,8 @@ function RouteTab({ showRoute, onRouteToggle }) {
             <p className="font-semibold" style={{ color: SIDEBAR_THEME.text }}>
               Route info
             </p>
-            <p>Numbered markers on the map show the walking tour sequence.</p>
-            <p>Follow the dashed line connecting each heritage site.</p>
+            <p>Numbered markers on the map show the selected tour sequence.</p>
+            <p>Follow the dashed line connecting each site in the chosen route.</p>
           </div>
         )}
       </div>
