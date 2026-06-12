@@ -16,15 +16,17 @@ const WAYPOINT_STYLE = {
   weight: 2,
 }
 
-function RouteLayer({ sites = [], route = [], visible = false }) {
+function RouteLayer({ sites = [], route = [], routePositions = [], visible = false }) {
   if (!visible || route.length < 2) return null
 
   const siteById = Object.fromEntries(sites.map((s) => [s.id, s]))
 
-  const positions = route
-    .map((id) => siteById[id])
-    .filter(Boolean)
-    .map((site) => [site.lat, site.lng])
+  const positions = routePositions.length > 1
+    ? routePositions
+    : route
+      .map((id) => siteById[id])
+      .filter(Boolean)
+      .map((site) => [site.lat, site.lng])
 
   const waypoints = route
     .map((id) => siteById[id])

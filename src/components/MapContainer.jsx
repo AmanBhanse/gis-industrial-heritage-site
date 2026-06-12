@@ -11,6 +11,7 @@ import PolygonLayer from './PolygonLayer'
 import RouteLayer from './RouteLayer'
 import SkulpturenLayer from './SkulpturenLayer'
 import SiteMarkers from './map/SiteMarkers'
+import { useOSRMRoute } from '../hooks/useOSRMRoute'
 
 function MapInstanceBridge({ onReady }) {
   const map = useMap()
@@ -45,6 +46,11 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
   const [ohmYear, setOhmYear] = useState(2025)
   const [mapInstance, setMapInstance] = useState(null)
   const markerRefs = useRef({})
+  const { positions: routePositions, loading: routeLoading, isFallback, error: routeError } = useOSRMRoute({
+    sites: allSites,
+    route,
+    enabled: showRoute,
+  })
 
   // Register flyTo callback with parent
   useEffect(() => {
@@ -85,7 +91,12 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
         <PolygonLayer sites={sites} onMarkerClick={onMarkerClick} />
 
         {/* Walking Tour Route */}
-        <RouteLayer sites={allSites} route={route} visible={showRoute} />
+        <RouteLayer
+          sites={allSites}
+          route={route}
+          routePositions={routePositions}
+          visible={showRoute}
+        />
 
         {/* Public Art / Sculptures overlay */}
         {showSculptures && (
@@ -132,6 +143,16 @@ function MapContainerComponent({ sites = [], selectedSite = null, onMarkerClick 
 
       {/* Map Legend */}
       <MapLegend />
+
+      {/* Route debug status */}
+      {showRoute && (
+        <div className="absolute bottom-(--spacing-md) left-(--spacing-md) z-1000 rounded-md bg-white/90 px-2 py-1 text-xs text-slate-800 shadow-sm">
+          {routeLoading && 'Route: loading OSRM...'}
+          {!routeLoading && !isFallback && 'Route: OSRM road path'}
+          {!routeLoading && isFallback && 'Route: fallback straight lines'}
+          {!routeLoading && routeError ? ` (${routeError})` : ''}
+        </div>
+      )}
     </div>
   )
 }
