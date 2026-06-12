@@ -12,7 +12,7 @@ function Layout({ header, sidebar, children }) {
   return (
     <div className="flex flex-col h-screen w-full overflow-hidden">
       {/* Header */}
-      <header className="flex items-center gap-2 px-4 h-12 shrink-0 bg-[#1a2332] shadow-md z-50">
+      <header className="flex items-center gap-2 p-4 h-16 shrink-0 bg-[#1a2332] shadow-md z-50">
         <button
           onClick={() => setOpen((o) => !o)}
           className="inline-flex items-center justify-center rounded-md p-1.5 text-white/70 hover:bg-white/10 hover:text-white transition-colors"

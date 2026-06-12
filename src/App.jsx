@@ -96,10 +96,15 @@ function App() {
   }
 
   const headerContent = (
-    <div className="header-inner">
-      <div className="header-text">
-        <span className="header-title">Map of Kaiserslautern</span>
+    <div className="flex h-full w-full items-center justify-between gap-2">
+      <div className="flex flex-col">
+        <span className="text-base font-bold leading-tight tracking-[0.01em] text-white">Welcome to Kaiserslautern</span>
       </div>
+      <img
+        src="/kaiserslautern.png"
+        alt="Kaiserslautern"
+        className="ml-auto h-full w-auto object-contain"
+      />
     </div>
   )
 
